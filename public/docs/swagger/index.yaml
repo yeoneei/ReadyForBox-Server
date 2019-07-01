@@ -75,5 +75,5 @@ paths:
   
 
   /mypage/regular-delivery/subscribe:
-    $ref: './paths/mypage/regular-delivery/subscribe'
+    $ref: './paths/mypage/regular-delivery/subscribe.yaml'
 
