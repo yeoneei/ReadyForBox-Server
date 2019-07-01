@@ -1,0 +1,51 @@
+get:
+  tags:
+    - 마이페이지
+  summary: 마이페이지 결제 확인
+  parameters:
+    - in: header
+      name: token
+      required: true
+      schema: 
+        type: string
+      description: 로그인 토큰
+    - in: query
+      name: order_item_id
+      required: true
+      schema:
+        type: integer
+      description: 주문 물품 id
+  responses:
+    '200':
+      description: 상품 데이터 조회 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: 데이터 조회 성공
+              data:
+                type: object
+                example: {
+                  "created_at": "2019.06.16.10:33:22",
+                  "main_img": "alkasndflkasndflkasdnklasdnf.alkkansdfnl",
+                  "name": "5구 멀티탭",
+                  "saled_price": 13000,
+                  "count": 1,
+                  "is_package": 1,
+                  "order_id": 20190619824798124
+                }
+    '400':
+      $ref: '../../components/responses.yaml#400-NULL_VALUE'
+    '400 ':
+      $ref: '../../components/responses.yaml#400-WRONG_PARAMS'
+    '500 ':
+      $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'

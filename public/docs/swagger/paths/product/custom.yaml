@@ -1,0 +1,122 @@
+get:
+  tags:
+    - 상품
+  summary: For U 상품 리스트 보여주기
+  parameters:
+    - in: query
+      name: first
+      required: true
+      schema:
+        type: string
+      description: |
+        (1순위로 지정한 값)
+
+        clean: 청소
+
+        cook: 요리
+
+        sleep: 수면
+
+        interior: 인테리어
+
+        clothes: 옷관리
+    - in: query
+      name: second
+      required: true
+      schema:
+        type: string
+      description: |
+        (2순위로 지정한 값)
+
+        clean: 청소
+
+        cook: 요리
+
+        sleep: 수면
+
+        interior: 인테리어
+
+        clothes: 옷관리
+    - in: query
+      name: fifth
+      required: true
+      schema:
+        type: string
+      description: |
+        (5순위로 지정한 값)
+
+        clean: 청소
+
+        cook: 요리
+
+        sleep: 수면
+
+        interior: 인테리어
+
+        clothes: 옷관리
+    - in: query
+      name: minprice
+      required: true
+      schema:
+        type: integer
+      description: 최소 가격
+    - in: query
+      name: maxprice
+      required: true
+      schema:
+        type: integer
+      description: 최대 가격
+  responses:
+    '200':
+      description: 상품 데이터 조회 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: 데이터 조회 성공
+              data:
+                type: object
+                example: {
+                  "package": [{
+                      "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    },
+                    {
+                      "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    },
+                    {
+                      "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    }],
+                  "regularity": [{
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  },
+                  {
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  },
+                  {
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  }],
+                  "notImportant": [{
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  },
+                  {
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  },
+                  {
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  }]
+                }
+    '400':
+      $ref: '../../components/responses.yaml#400-NULL_VALUE'
+    '400 ':
+      $ref: '../../components/responses.yaml#400-WRONG_PARAMS'
+    '500 ':
+      $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
