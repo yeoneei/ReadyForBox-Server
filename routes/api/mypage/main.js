@@ -3,7 +3,6 @@ var router = express.Router();
 const utils = require('../../../module/response/utils');
 const resMessage = require('../../../module/response/responseMessage');
 const statusCode = require('../../../module/response/statusCode');
-const pool = require('../../../config/dbConfig');
 const jwt = require('../../../module/jwt');
 
 router.get('/', jwt.isLoggedIn, async(req, res) => {

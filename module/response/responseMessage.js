@@ -8,10 +8,13 @@ module.exports = {
     // 토큰
     EXPIRED_TOKEN: "토큰이 만료되었습니다.",
     INVALID_TOKEN: "유효하지 않은 토큰입니다.",
-    EMPTY_TOKEN: "입력된 토큰이 없습니다."
+    EMPTY_TOKEN: "입력된 토큰이 없습니다.",
 
-    // 
-
+    // 응답 메시지
+    NULL_VALUE: "Params나 Body 중 필수적으로 입력해야 하는 값인데, 입력하지 않은 값(NULL)이 존재합니다.",
+    
+    // 로그인 및 회원가입
+    ALREADY_USER: "중복된 아이디가 존재합니다.", 
 
 
     // SAVE_LIKES: "하트 설정 성공",
@@ -26,7 +29,7 @@ module.exports = {
     // INTERNAL_SERVER_ERROR: "서버 측에서 발생한 에러입니다.",
     // FORBIDDEN_USER: "데이터를 작성한 사용자만 수정 및 삭제할 수 있습니다.",
 
-    // ALREADY_USER: "중복된 아이디가 존재합니다.", 
+    
     // LOGIN_FAIL: "아이디나 비밀번호가 일치하지 않습니다.",
 
     // NEED_LOGIN: "로그인이 필요합니다.",
