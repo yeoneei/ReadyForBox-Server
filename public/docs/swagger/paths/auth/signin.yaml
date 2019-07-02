@@ -9,15 +9,15 @@ post:
         schema:
           type: object
           properties:
-            userId:
+            email:
               type: string
-              description: 사용자 아이디
-            userPw:
+              description: 사용자 이메일(아이디)
+            password:
               type: string
               description: 사용자 비밀번호
           require:
-            - userId
-            - userPw
+            - email
+            - password
   responses:
     '200':
       description: 아이디와 비밀번호가 일치해서 로그인 성공
@@ -40,23 +40,23 @@ post:
                 example: {
                   "token":  "asdgasdgoiMTIzIasdgasdg-pFOwKZtyKPDhVOMQ2C8w"
                 }
-    '400':
-      $ref: '../../components/responses.yaml#400-NULL_VALUE'
-    '401':
-      description: 아이디나 비밀번호가 일치하지 않아서 로그인 실패
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: integer
-                example: 401
-              success:
-                type: boolean
-                example: false
-              message:
-                type: string
-                example: 아이디나 비밀번호가 일치하지 않습니다.
-    '500 ':
-      $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
+  #   '400':
+  #     $ref: '../../components/responses.yaml#400-NULL_VALUE'
+  #   '401':
+  #     description: 아이디나 비밀번호가 일치하지 않아서 로그인 실패
+  #     content:
+  #       application/json:
+  #         schema:
+  #           type: object
+  #           properties:
+  #             status:
+  #               type: integer
+  #               example: 401
+  #             success:
+  #               type: boolean
+  #               example: false
+  #             message:
+  #               type: string
+  #               example: 아이디나 비밀번호가 일치하지 않습니다.
+  #   '500 ':
+  #     $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
