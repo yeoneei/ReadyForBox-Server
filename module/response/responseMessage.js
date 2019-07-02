@@ -17,7 +17,7 @@ module.exports = {
     ALREADY_USER: "중복된 이메일이 존재합니다.",
     NULL_USER: "존재하지 않는 이메일입니다.",
     INVALID_PASSWORD: "비밀번호가 일치하지 않습니다.",
-    LOGIN_SUCCESS: "로그인 성공"
+    LOGIN_SUCCESS: "로그인 성공",
 
 
     // SAVE_LIKES: "하트 설정 성공",
