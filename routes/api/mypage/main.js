@@ -8,7 +8,6 @@ const jwt = require('../../../module/jwt');
 
 router.get('/', jwt.isLoggedIn, async(req, res) => {
     try {
-        var connection = await pool.getConnection();
         const { name, email } = req.decoded;
         const data = {
             name,
@@ -18,8 +17,6 @@ router.get('/', jwt.isLoggedIn, async(req, res) => {
     } catch(err) {
         console.log(err);
         res.status(200).json(utils.successFalse(statusCode.INTERNAL_SERVER_ERROR, resMessage.INTERNAL_SERVER_ERROR));
-    } finally {
-        connection.release();
     }
 })
 
