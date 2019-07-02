@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
            // console.log(package);
 
             // 정기상품 1,2등관련 랜덤 5개 대표이미지
-            let getRegularQuery = `SELECT main_img FROM products WHERE (custom_category_id=${result1[0].custom_category_id} OR custom_category_id=${result2[0].custom_category_id}) AND is_package=0 AND (1-(sale_ratio*0.01))*price >= ${minprice} AND (1-(sale_ratio*0.01))*price <= ${maxprice}`;
+            let getRegularQuery = `SELECT main_img FROM products WHERE (custom_category_id=${result1[0].custom_category_id} OR custom_category_id=${result2[0].custom_category_id}) AND is_package=0 AND ROUND((1-(sale_ratio*0.01))*price >= ${minprice} AND (1-(sale_ratio*0.01))*price <= ${maxprice}`;
             let getRegularResult = await connection.query(getRegularQuery);
             delete getRegularResult.meta;
 

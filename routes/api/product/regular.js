@@ -22,8 +22,20 @@ router.get('/', async (req, res) => {
         if (!main_category_id || !flag) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.WRONG_PARAMS));
         } else {
-            if (flag == 3) {
-                let query1 = "SELECT main_img,name,content,price,ROUND((1-(sale_ratio*0.01))*price,0) AS saled_price FROM products WHERE main_category_id=? AND is_package = 0 ORDER BY saled_price DESC";
+            // 최신순
+            if(flag == 2) {
+                let query = "SELECT main_img,name,content,price,ROUND((1-(sale_ratio*0.01))*price,0) AS saled_price FROM products WHERE main_category_id=? AND is_package = 0 ORDER BY created_at DESC";
+                let result = await connection.query(query, [main_category_id]);
+                if (!result[0]) {
+                    res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.WRONG_PARAMS));
+                } else {
+                    delete result.meta;
+                    data.product = result;
+                }
+            }
+            // 가격 낮은 순
+            else if (flag == 3) {
+                let query1 = "SELECT main_img,name,content,price,ROUND((1-(sale_ratio*0.01))*price,0) AS saled_price FROM products WHERE main_category_id=? AND is_package = 0 ORDER BY saled_price ASC";
                 let result1 = await connection.query(query1, [main_category_id]);
 
                 if (!result1[0]) {
@@ -32,8 +44,9 @@ router.get('/', async (req, res) => {
                     delete result1.meta;
                     data.product = result1;
                 }
+                // 가격 높은 순
             } else if (flag == 4) {
-                let query2 = "SELECT main_img,name,content,price,ROUND((1-(sale_ratio*0.01))*price,0) AS saled_price FROM products WHERE main_category_id=? AND is_package = 0 ORDER BY saled_price ASC";
+                let query2 = "SELECT main_img,name,content,price,ROUND((1-(sale_ratio*0.01))*price,0) AS saled_price FROM products WHERE main_category_id=? AND is_package = 0 ORDER BY saled_price DESC";
                 let result2 = await connection.query(query2, [main_category_id]);
                 if (!result2[0]) {
                     res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.WRONG_PARAMS));
@@ -64,3 +77,4 @@ router.get('/', async (req, res) => {
 })
 
 module.exports = router;
+
