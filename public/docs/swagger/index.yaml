@@ -42,8 +42,8 @@ paths:
   /product/detail:
     $ref: './paths/product/detail.yaml'
 
-  # /auth/signin:
-  #   $ref: './paths/auth/signin.yaml'
+  /auth/signin:
+    $ref: './paths/auth/signin.yaml'
   /auth/signup: 
     $ref: './paths/auth/signup.yaml'
 
@@ -75,5 +75,5 @@ paths:
   
 
   /mypage/regular-delivery/subscribe:
-    $ref: './paths/mypage/regular-delivery/subscribe'
+    $ref: './paths/mypage/regular-delivery/subscribe.yaml'
 

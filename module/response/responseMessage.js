@@ -1,11 +1,19 @@
 module.exports = {
-    // 수정 필요!!!
-
+    // CRUD
+    SAVE_SUCCESS: "데이터 저장 성공",
+    READ_SUCCESS: "데이터 조회 성공",
+    DELETE_SUCCESS: "데이터 삭제 성공",
+    UPDATE_SUCCESS: "데이터 수정 성공",
     
-    // SAVE_SUCCESS: "데이터 저장 성공",
-    // READ_SUCCESS: "데이터 조회 성공",
-    // DELETE_SUCCESS: "데이터 삭제 성공",
-    // UPDATE_SUCCESS: "데이터 수정 성공",
+    // 토큰
+    EXPIRED_TOKEN: "토큰이 만료되었습니다.",
+    INVALID_TOKEN: "유효하지 않은 토큰입니다.",
+    EMPTY_TOKEN: "입력된 토큰이 없습니다."
+
+    // 
+
+
+
     // SAVE_LIKES: "하트 설정 성공",
     // DELETE_LIKES: "하트 해제 성공",
     // LOGIN_SUCCESS: "로그인 성공",
@@ -20,8 +28,7 @@ module.exports = {
 
     // ALREADY_USER: "중복된 아이디가 존재합니다.", 
     // LOGIN_FAIL: "아이디나 비밀번호가 일치하지 않습니다.",
-    // EXPIRED_TOKEN: "토큰이 만료되었습니다.",
-    // INVALID_TOKEN: "유효하지 않은 토큰입니다.",
+
     // NEED_LOGIN: "로그인이 필요합니다.",
     // ALREADY_LOGIN: "이미 로그인을 한 상태입니다.",
 

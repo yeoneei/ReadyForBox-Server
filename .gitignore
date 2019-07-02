@@ -268,3 +268,4 @@ typings/
 config/
 .env
 node_modules/
+module/
