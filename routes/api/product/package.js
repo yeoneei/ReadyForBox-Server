@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.WRONG_PARAMS));
         } else {
             if (flag == 3) {
-                let query1 = "SELECT main_img,name,price,(1-(sale_ratio*0.01))*price AS saled_price FROM products WHERE main_category_id=? AND is_package = 1 ORDER BY saled_price DESC";
+                let query1 = "SELECT main_img,name,price,ROUND((1-(sale_ratio*0.01))*price,0) AS saled_price FROM products WHERE main_category_id=? AND is_package = 1 ORDER BY saled_price DESC";
                 let result1 = await connection.query(query1, [main_category_id]);
 
                 if (!result1[0]) {
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
                     data.product = result1;
                 }
             } else if (flag == 4) {
-                let query2 = "SELECT main_img,name,price,(1-(sale_ratio*0.01))*price AS saled_price FROM products WHERE main_category_id=? AND is_package = 1 ORDER BY saled_price ASC";
+                let query2 = "SELECT main_img,name,price,ROUND((1-(sale_ratio*0.01))*price,0) AS saled_price FROM products WHERE main_category_id=? AND is_package = 1 ORDER BY saled_price ASC";
                 let result2 = await connection.query(query2, [main_category_id]);
                 if (!result2[0]) {
                     res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.WRONG_PARAMS));
