@@ -18,6 +18,9 @@ post:
           require:
             - email
             - password
+          example:
+            email: qkrwotjd1445@naver.com
+            password: '1234'
   responses:
     '200':
       description: 아이디와 비밀번호가 일치해서 로그인 성공
