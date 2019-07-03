@@ -36,9 +36,6 @@ router.get('/', async (req, res) => {
             delivery_cycle: result1[0].delivery_cycle,
             delivery_day: result1[0].delivery_day
         }
-        //console.log(product);
-        //console.log(delivery);
-        //console.log(cycle);
 
         data.product = product;
         data.delivery = delivery;
@@ -47,6 +44,9 @@ router.get('/', async (req, res) => {
         console.log(data);
     } catch {
 
+    } finally {
+        connection.release();
     }
 })
+
 module.exports = router;
