@@ -5,4 +5,5 @@ router.use('/product', require('./product'));
 router.use('/change', require('./change'));
 router.use('/change/address', require('./address'));
 router.use('/change/count-minus', require('./count-minus'));
+router.use('/change/count-plus', require('./count-plus'));
 module.exports = router;
