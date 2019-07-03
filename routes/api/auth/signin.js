@@ -5,6 +5,7 @@ const resMessage = require('../../../module/response/responseMessage');
 const statusCode = require('../../../module/response/statusCode');
 const pool = require('../../../config/dbConfig');
 const cryptoPassword = require('../../../module/cryptoPassword');
+const jwt = require('../../../module/jwt');
 
 router.post('/', async(req, res) => {
     try {
@@ -31,8 +32,13 @@ router.post('/', async(req, res) => {
                 password = await cryptoPassword.hashedPassword(password, salt);  
                 if (password !== db_password) {
                     res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.INVALID_PASSWORD));
+
+                // 패스워드가 일치하는 경우 -> 로그인 성공
                 } else {
-                    res.status(200).json(utils.successTrue(statusCode.OK, resMessage.LOGIN_SUCCESS));
+                    let data = {
+                        token: jwt.sign(result[0])
+                    };
+                    res.status(200).json(utils.successTrue(statusCode.OK, resMessage.LOGIN_SUCCESS, data));
                 }
             }
         }        
