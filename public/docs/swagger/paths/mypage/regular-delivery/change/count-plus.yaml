@@ -1,0 +1,33 @@
+put:
+  tags:
+    - 마이페이지
+  summary: 마이페이지 정기배송 관리 - 수량 증가
+  parameters:
+    - in: header
+      name: token
+      schema:
+        type: string
+      required: true
+  requestBody:
+    require: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            order_item_id:
+              type: integer
+              description: 주문 물품 id
+          require:
+            - order_item_id
+  # responses:
+  #   '201':
+  #     $ref: '../../components/responses.yaml#201-SAVE_SUCCESS'
+  #   '400':
+  #     $ref: '../../components/responses.yaml#400-NULL_VALUE'
+  #   '400 ':
+  #     $ref: '../../components/responses.yaml#400-WRONG_PARAMS'
+  #   '400  ':
+  #     $ref: '../../components/responses.yaml#400-TOO_MANY_FILES'
+  #   '500 ':
+  #     $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'

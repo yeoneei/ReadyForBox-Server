@@ -1,0 +1,65 @@
+post:
+  tags:
+    - 로그인 및 회원가입
+  summary: 로그인 
+  requestBody:
+    require: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              description: 사용자 이메일(아이디)
+            password:
+              type: string
+              description: 사용자 비밀번호
+          require:
+            - email
+            - password
+          example:
+            email: qkrwotjd1445@naver.com
+            password: '1234'
+  responses:
+    '200':
+      description: 아이디와 비밀번호가 일치해서 로그인 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: '로그인 성공'
+              data: 
+                type: object
+                example: {
+                  "token":  "asdgasdgoiMTIzIasdgasdg-pFOwKZtyKPDhVOMQ2C8w"
+                }
+  #   '400':
+  #     $ref: '../../components/responses.yaml#400-NULL_VALUE'
+  #   '401':
+  #     description: 아이디나 비밀번호가 일치하지 않아서 로그인 실패
+  #     content:
+  #       application/json:
+  #         schema:
+  #           type: object
+  #           properties:
+  #             status:
+  #               type: integer
+  #               example: 401
+  #             success:
+  #               type: boolean
+  #               example: false
+  #             message:
+  #               type: string
+  #               example: 아이디나 비밀번호가 일치하지 않습니다.
+  #   '500 ':
+  #     $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
