@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         } else {
             // 최신순
-            if (flag == 2) {
+            if (flag == 1) {
                 let query = "SELECT product_id, main_img, name, content, price, "
                     + "ROUND((1-(sale_ratio * 0.01)) * price, 0) AS saled_price "
                     + "FROM products WHERE main_category_id = ? AND is_package = 0 ORDER BY created_at DESC";
