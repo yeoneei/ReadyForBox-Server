@@ -44,12 +44,14 @@ get:
                 example: {
                   product_count: 42,
                   product: [{
+                    "product_id": "ab_1027492",
                     "name": "플레이팅 완벽하게 끝내기",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     "price": 58000,
                     "saled_price": 48900,
                   },
                   {
+                    "product_id": "ab_1027492",
                     "name": "플레이팅 완벽하게 끝내기",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     "price": 58000,
