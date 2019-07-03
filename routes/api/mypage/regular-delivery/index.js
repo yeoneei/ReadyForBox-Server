@@ -7,4 +7,5 @@ router.use('/change/address', require('./address'));
 router.use('/change/count-minus', require('./count-minus'));
 router.use('/change/count-plus', require('./count-plus'));
 router.use('/change/memo', require('./memo'));
+router.use('/change/cycle', require('./cycle'));
 module.exports = router;
