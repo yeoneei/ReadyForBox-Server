@@ -87,30 +87,39 @@ get:
                 type: object
                 example: {
                   "package": [{
+                      "product_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     },
                     {
+                      "product_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     },
                     {
+                      "product_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     }],
                   "regularity": [{
+                    "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                   },
                   {
+                    "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                   },
                   {
+                    "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                   }],
                   "notImportant": [{
+                    "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                   },
                   {
+                    "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                   },
                   {
+                    "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                   }]
                 }

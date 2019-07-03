@@ -36,9 +36,9 @@ get:
                   "price": 11700,
                   "saled_price": 10000,
                   "content_img": [
-                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
-                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
-                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf"
+                    { "img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf" },
+                    { "img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf" },
+                    { "img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf" },
                   ]
                 }
     # '400':
