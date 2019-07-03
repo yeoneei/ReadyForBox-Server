@@ -18,8 +18,20 @@ router.get('/', async (req, res) => {
         if (!main_category_id || !flag) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         } else {
-            // 각각의 정렬 방법에 따른 데이터 조회
-            if (flag == 3) {
+            // 최신순
+            if (flag == 2) {
+                let query = "SELECT product_id, main_img, name, content, price, "
+                    + "ROUND((1-(sale_ratio * 0.01)) * price, 0) AS saled_price "
+                    + "FROM products WHERE main_category_id = ? AND is_package = 0 ORDER BY created_at DESC";
+                let result = await connection.query(query, [main_category_id]);
+                if (!result[0]) {
+                    res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.WRONG_PARAMS));
+                } else {
+                    data.product = result;
+                }
+            }
+            // 가격 낮은 순
+            else if (flag == 3) {
                 let query1 = "SELECT product_id, main_img, name, content, price, "
                     + "ROUND((1-(sale_ratio*0.01))*price, 0) AS saled_price "
                     + "FROM products WHERE main_category_id=? AND is_package = 0 ORDER BY saled_price ASC";
@@ -30,6 +42,7 @@ router.get('/', async (req, res) => {
                 } else {
                     data.product = result1;
                 }
+                // 가격 높은 순
             } else if (flag == 4) {
                 let query2 = "SELECT product_id, main_img, name, content, price, "
                     + "ROUND((1-(sale_ratio*0.01))*price, 0) AS saled_price "
@@ -64,3 +77,4 @@ router.get('/', async (req, res) => {
 })
 
 module.exports = router;
+
