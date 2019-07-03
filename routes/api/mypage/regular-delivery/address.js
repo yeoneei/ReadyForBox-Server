@@ -24,7 +24,7 @@ router.put('/', async (req, res) => {
             let result1 = await connection.query(query1, [delivery_address1, delivery_address2, delivery_address_detail, order_item_id]);
             console.log(result1);
         }
-    } catch {
+    } catch (err) {
         console.log("error!");
     } finally {
         connection.release();
