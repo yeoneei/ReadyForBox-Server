@@ -8,6 +8,7 @@
   "dependencies": {
     "aws-sdk": "^2.485.0",
     "cookie-parser": "~1.4.3",
+    "crypto-promise": "^2.1.0",
     "debug": "~2.6.9",
     "dotenv": "^8.0.0",
     "express": "~4.16.0",

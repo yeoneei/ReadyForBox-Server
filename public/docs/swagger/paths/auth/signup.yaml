@@ -27,6 +27,24 @@ post:
             gender:
               type: boolean
               description: 성별 (여성-0, 남성-1)
+            receiver:
+              type: string
+              description: 수령인
+            receiver_phone:
+              type: string
+              description: 수령인 연락처
+            address1:
+              type: string
+              description: 배송 주소1
+            address2:
+              type: string
+              description: 배송 주소2
+            address_detail:
+              type: string
+              description: 배송 상세 주소
+            delivery_memo: 
+              type: string
+              description: 배송 메모
           require:
             - email
             - password
@@ -34,6 +52,26 @@ post:
             - birth
             - phone
             - gender
+            - receiver
+            - receiver_phone
+            - address1
+            - address2
+          example:
+            email: qkrwotjd1445@naver.com
+            password: '1234'
+            name: 박재성
+            birth: '941011'
+            phone: '01051984332'
+            gender: 1
+            receiver: 고성진
+            receiver_phone: 01049299302
+            address1: 인천광역시 남구
+            address2: 용현동 66-29
+            address_detail: 패밀리고시원 202호
+            delivery_memo: 현관문 앞
+            
+
+                        
   responses:
     '201':
       description: 회원가입 성공

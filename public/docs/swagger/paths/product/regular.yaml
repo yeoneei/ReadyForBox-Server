@@ -17,11 +17,11 @@ get:
       description: |
         1: 인기순 (앱잼 때 구현 X)
 
-        2: 조회순 (앱잼 때 구현 X)
+        2: 최신순 (앱잼 때 구현 X)
 
-        3: 가격높은 순 (구현 O)
+        3: 가격 낮은 순 (구현 O)
 
-        4: 가격낮은 순 (구현 O)
+        4: 가격 높은 순 (구현 O)
         
   responses:
     '200':
@@ -45,6 +45,7 @@ get:
                 example: {
                   product_count: 42,
                   product: [{
+                    "product_id": "baa_100592750",
                     "name": "삼다수",
                     "content": "제주삼다수, 500ml, 40개입",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
@@ -52,6 +53,7 @@ get:
                     "saled_price": 10000,
                   },
                   {
+                    "product_id": "baa_100592750",
                     "name": "삼다수",
                     "content": "제주삼다수, 500ml, 40개입",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
