@@ -1,7 +1,7 @@
 get:
   tags:
     - 마이페이지
-  summary: 마이페이지 정기배송 관리 - 신청, 해지 내역
+  summary: 마이페이지 정기배송 관리 - '신청, 해지 내역' 화면
   parameters:
     - in: header
       name: token

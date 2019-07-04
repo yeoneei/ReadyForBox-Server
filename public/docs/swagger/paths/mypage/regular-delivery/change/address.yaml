@@ -31,9 +31,14 @@ put:
             - order_item_id
             - delivery_address1
             - delivery_address2
-  # responses:
-  #   '201':
-  #     $ref: '../../components/responses.yaml#201-SAVE_SUCCESS'
+          example:
+            order_item_id: '3'
+            delivery_address1: 인천광역시 남구
+            delivery_address2: 미추홀구
+            delivery_address_detail: 롯데캐슬 301호
+  responses:
+    '201':
+      $ref: '../../../../components/responses.yaml#201-SAVE_SUCCESS'
   #   '400':
   #     $ref: '../../components/responses.yaml#400-NULL_VALUE'
   #   '400 ':

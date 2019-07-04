@@ -1,7 +1,7 @@
 get:
   tags:
     - 마이페이지
-  summary: 마이페이지 결제 확인
+  summary: 마이페이지 주문 내역 상세
   parameters:
     - in: header
       name: token

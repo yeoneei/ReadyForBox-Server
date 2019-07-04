@@ -15,9 +15,9 @@ get:
       schema: 
         type: integer
       description: |
-        1: 인기순 (앱잼 때 구현 X)
+        1: 최신순 (구현 O)
 
-        2: 최신순 (구현 O)
+        2: 인기순 (앱잼 때 구현 X)
 
         3: 가격 낮은 순 (구현 O)
 
