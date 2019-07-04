@@ -18,12 +18,8 @@ put:
             order_item_id:
               type: integer
               description: 주문 물품 id            
-            is_subscribed:
-              type: boolean
-              description: 정기 배송 지속 여부
           require:
             - order_item_id
-            - is_subscribed
   # responses:
   #   '201':
   #     $ref: '../../components/responses.yaml#201-SAVE_SUCCESS'

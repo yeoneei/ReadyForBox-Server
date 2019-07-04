@@ -7,25 +7,42 @@ const pool = require('../../../../config/dbConfig');
 const jwt = require('../../../../module/jwt');
 
 // 정기배송 관리 - 수량 감소
-router.put('/', async (req, res) => {
+router.put('/', jwt.isLoggedIn, async (req, res) => {
     try {
         var connection = await pool.getConnection();
-
         const { order_item_id } = req.body;
+        const { user_id } = req.decoded;
 
-        let query1 = "SELECT count FROM order_items WHERE order_item_id = ? "
-        let result1 = await connection.query(query1, [order_item_id]);
-
-        // 수량이 1개일 때는 감소 시킬 수 없다.
-        if ((result1[0].count) > 1) {
-            let query2 = "UPDATE order_items SET count=count-1 WHERE order_item_id = ?"
-            let result2 = await connection.query(query2, [order_item_id]);
-            console.log(result2);
+        if (!order_item_id || !user_id) {
+            res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
-            console.log("최소 수량입니다.");
+            let query1 = "SELECT count FROM order_items "
+            + "LEFT JOIN orders ON order_items.order_id = orders.order_id "
+            + "WHERE order_item_id = ? AND user_id = ?"
+            let result1 = await connection.query(query1, [order_item_id, user_id]);
+            
+            if (!result1[0]) {
+                res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
+            } else {
+                const { count } = result1[0];
+
+                // 수량이 1개일 때는 감소 시킬 수 없다.
+                if (count > 1) {
+                    let query2 = "UPDATE order_items SET count = count - 1 WHERE order_item_id = ?"
+                    let result2 = await connection.query(query2, [order_item_id]);
+                    if (result2.affectedRows === 1) {
+                        res.status(200).json(utils.successTrue(statusCode.NO_CONTENT, resMessage.UPDATE_SUCCESS));
+                    } else {
+                        res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
+                    }
+                } else {
+                    res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.MINIMUM));
+                }
+            }
         }
     } catch (err) {
         console.log(err);
+        res.status(200).json(utils.successFalse(statusCode.INTERNAL_SERVER_ERROR, resMessage.INTERNAL_SERVER_ERROR));
     } finally {
         connection.release();
     }
