@@ -66,11 +66,11 @@ paths:
     $ref: './paths/mypage/regular-delivery/change/count-plus.yaml'
   /mypage/regular-delivery/change/memo:
     $ref: './paths/mypage/regular-delivery/change/memo.yaml'
-  /mypage/regular-deliver/change/cycle:
+  /mypage/regular-delivery/change/cycle:
     $ref: './paths/mypage/regular-delivery/change/cycle.yaml'
-  /mypage/regular-deliver/change/delivery-day:
+  /mypage/regular-delivery/change/delivery-day:
     $ref: './paths/mypage/regular-delivery/change/delivery-day.yaml'
-  /mypage/regular-deliver/change/cancel:
+  /mypage/regular-delivery/change/cancel:
     $ref: './paths/mypage/regular-delivery/change/cancel.yaml'
   
 
