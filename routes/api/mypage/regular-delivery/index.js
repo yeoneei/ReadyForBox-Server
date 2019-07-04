@@ -10,6 +10,6 @@ router.use('/change/memo', require('./memo'));
 router.use('/change/cycle', require('./cycle'));
 router.use('/change/delivery-day', require('./delivery-day'));
 router.use('/change/cancel', require('./cancel'));
-router.use('/change/subscribe', require('./subscribe'));
+router.use('/subscribe', require('./subscribe'));
 
 module.exports = router;
