@@ -20,7 +20,7 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
 
-            let query = "SELECT order_items.order_id FROM order_items left JOIN orders "
+            let query = "SELECT order_items.order_id FROM order_items LEFT JOIN orders "
                 + "ON order_items.order_id = orders.order_id WHERE order_item_id = ? AND user_id = ?";
             let result = await connection.query(query, [order_item_id, user_id]);
             if (!result[0]) {

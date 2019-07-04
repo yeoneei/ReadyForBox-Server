@@ -19,10 +19,10 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
         if (!order_item_id) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
-            let query = "SELECT order_items.order_id FROM order_items left JOIN orders "
+            let query = "SELECT order_items.order_id FROM order_items LEFT JOIN orders "
                 + "ON order_items.order_id = orders.order_id WHERE order_item_id = ? AND user_id = ?";
             let result = await connection.query(query, [order_item_id, user_id]);
-            
+
             if (!result[0]) {
                 res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
             } else if (is_subscribed = 1) {
@@ -34,6 +34,8 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
                 } else {
                     res.status(200).json(utils.successTrue(statusCode.OK, resMessage.UPDATE_SUCCESS));
                 }
+            } else {
+                res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
             }
         }
     } catch (err) {

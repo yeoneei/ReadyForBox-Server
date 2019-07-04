@@ -21,9 +21,9 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {
         } else {
 
             let query = "SELECT main_img, name, delivery_cycle, delivery_day, count "
-                + "FROM order_items left JOIN orders ON order_items.order_id = orders.order_id "
-                + "left JOIN regular_deliveries ON order_items.order_id = regular_deliveries.order_id "
-                + "left JOIN products ON order_items.product_id = products.product_id WHERE is_subscribed = ? AND user_id = ?"
+                + "FROM order_items LEFT JOIN orders ON order_items.order_id = orders.order_id "
+                + "LEFT JOIN regular_deliveries ON order_items.order_id = regular_deliveries.order_id "
+                + "LEFT JOIN products ON order_items.product_id = products.product_id WHERE is_subscribed = ? AND user_id = ?"
 
             let data = await connection.query(query, [is_subscribed, user_id]);
 
