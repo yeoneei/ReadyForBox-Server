@@ -11,8 +11,8 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {
         var connection = await pool.getConnection();
         const { user_id } = req.decoded;
         const { order_item_id } = req.query;
-        console.log(user_id);
-        console.log(order_item_id);
+        // console.log(user_id);
+        // console.log(order_item_id);
 
         // 테스트용
         // order_id : tb_20191820192750
@@ -29,35 +29,37 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {
             + "WHERE user_id = ? AND order_item_id = ?";
         let result1 = await connection.query(query1, [user_id, order_item_id]);
 
-        const { main_img, name, saled_price, count, delivery_memo, 
-            delivery_cycle, delivery_day, delivery_address_detail,
-            delivery_address1, delivery_address2 } = result1[0];
-        
-        // console.log(result1[0]);
-            
-        if (delivery_address_detail == null) {
-            var address = delivery_address1 + " " + delivery_address2;
+        if (!result1[0]) {
+            res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
         } else {
-            var address = delivery_address1 + " " + delivery_address2 + " " + delivery_address_detail;
-        }
+            const { main_img, name, saled_price, count, delivery_memo, 
+                delivery_cycle, delivery_day, delivery_address_detail,
+                delivery_address1, delivery_address2 } = result1[0];
 
-        let data = {
-            "product": {
-                main_img,
-                name,
-                saled_price,
-                count
-            },
-            "delivery": {
-                address,
-                delivery_memo
-            },
-            "cycle": {
-                delivery_cycle,
-                delivery_day
+            if (delivery_address_detail == null) {
+                var address = delivery_address1 + " " + delivery_address2;
+            } else {
+                var address = delivery_address1 + " " + delivery_address2 + " " + delivery_address_detail;
             }
+    
+            let data = {
+                "product": {
+                    main_img,
+                    name,
+                    saled_price,
+                    count
+                },
+                "delivery": {
+                    address,
+                    delivery_memo
+                },
+                "cycle": {
+                    delivery_cycle,
+                    delivery_day
+                }
+            }
+            res.status(200).json(utils.successTrue(statusCode.OK, resMessage.READ_SUCCESS, data));
         }
-        res.status(200).json(utils.successTrue(statusCode.OK, resMessage.READ_SUCCESS, data));
     } catch (err) {
         console.log(err);
         res.status(200).json(utils.successFalse(statusCode.INTERNAL_SERVER_ERROR, resMessage.INTERNAL_SERVER_ERROR));
