@@ -20,9 +20,11 @@ put:
               description: 주문 물품 id            
           require:
             - order_item_id
-  # responses:
-  #   '201':
-  #     $ref: '../../components/responses.yaml#201-SAVE_SUCCESS'
+          example:
+            order_item_id: 3
+  responses:
+    '201':
+      $ref: '../../../../components/responses.yaml#201-SAVE_SUCCESS'
   #   '400':
   #     $ref: '../../components/responses.yaml#400-NULL_VALUE'
   #   '400 ':

@@ -24,9 +24,12 @@ put:
           require:
             - order_item_id
             - delivery_cycle
-  # responses:
-  #   '201':
-  #     $ref: '../../components/responses.yaml#201-SAVE_SUCCESS'
+          example:
+            order_item_id: 3
+            delivery_cycle: 1
+  responses:
+    '201':
+      $ref: '../../../../components/responses.yaml#201-SAVE_SUCCESS'
   #   '400':
   #     $ref: '../../components/responses.yaml#400-NULL_VALUE'
   #   '400 ':
