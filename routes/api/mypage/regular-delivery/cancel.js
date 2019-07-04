@@ -8,8 +8,10 @@ const jwt = require('../../../../module/jwt');
 
 // 정기 배송 취소
 
-router.put('/', async (req, res) => {
+router.put('/', jwt.isLoggedIn, async (req, res) => {
     try {
+        const { user_id } = req.decoded;
+
         var connection = await pool.getConnection();
 
         const { order_item_id } = req.body;
@@ -17,17 +19,17 @@ router.put('/', async (req, res) => {
         if (!order_item_id) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
-
-            let query = "SELECT order_id FROM order_items WHERE order_item_id = ?";
-            let result = await connection.query(query, [order_item_id]);
-
+            let query = "SELECT order_items.order_id FROM order_items left JOIN orders "
+                + "ON order_items.order_id = orders.order_id WHERE order_item_id = ? AND user_id = ?";
+            let result = await connection.query(query, [order_item_id, user_id]);
+            
             if (!result[0]) {
                 res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
             } else if (is_subscribed = 1) {
                 let query2 = "UPDATE regular_deliveries SET is_subscribed = 0 WHERE order_id = ?";
                 let result2 = await connection.query(query2, [result[0].order_id]);
 
-                if (!result2[0]) {
+                if (!result2) {
                     res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
                 } else {
                     res.status(200).json(utils.successTrue(statusCode.OK, resMessage.UPDATE_SUCCESS));
