@@ -23,10 +23,13 @@ put:
               description: 배송 요청사항
           require:
             - order_item_id
+          example: 
+            order_item_id: 3
+            delivery_memo: 현관문 앞
 
-  # responses:
-  #   '201':
-  #     $ref: '../../components/responses.yaml#201-SAVE_SUCCESS'
+  responses:
+    '201':
+      $ref: '../../../../components/responses.yaml#201-SAVE_SUCCESS'
   #   '400':
   #     $ref: '../../components/responses.yaml#400-NULL_VALUE'
   #   '400 ':
