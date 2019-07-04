@@ -8,8 +8,10 @@ const jwt = require('../../../../module/jwt');
 
 // 배송 일자 변경
 
-router.put('/', async (req, res) => {
+router.put('/', jwt.isLoggedIn, async (req, res) => {
     try {
+        const { user_id } = req.decoded;
+
         var connection = await pool.getConnection();
 
         const { order_item_id, delivery_day } = req.body;
@@ -18,8 +20,9 @@ router.put('/', async (req, res) => {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
 
-            let query = "SELECT order_id FROM order_items WHERE order_item_id = ?";
-            let result = await connection.query(query, [order_item_id]);
+            let query = "SELECT order_items.order_id FROM order_items left JOIN orders "
+                + "ON order_items.order_id = orders.order_id WHERE order_item_id = ? AND user_id = ?";
+            let result = await connection.query(query, [order_item_id, user_id]);
 
             if (!result[0]) {
                 res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
@@ -27,7 +30,7 @@ router.put('/', async (req, res) => {
                 let query2 = "UPDATE regular_deliveries SET delivery_day = ? WHERE order_id = ?";
                 let result2 = await connection.query(query2, [delivery_day, result[0].order_id]);
 
-                if (!result2[0]) {
+                if (!result2) {
                     res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
                 } else {
                     res.status(200).json(utils.successTrue(statusCode.OK, resMessage.UPDATE_SUCCESS));
