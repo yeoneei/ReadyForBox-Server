@@ -13,6 +13,11 @@ const packageSchema = new Schema({
         type: String,
         required: true
     },
+    // 가격
+    price: {
+        type: Number,
+        required: true
+    },
     // 할인율
     sale_ratio: {
         type: Number,
@@ -30,6 +35,10 @@ const packageSchema = new Schema({
     // 패키지 상품을 삭제한 시간
     deleted_at: {
         type: Date
+    },
+    // 분류
+    category: {
+        type: [String]
     },
     // 패키지 안에 포함되어 있는 상품들
     products: [{
