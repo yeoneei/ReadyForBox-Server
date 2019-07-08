@@ -13,6 +13,11 @@ const packageSchema = new Schema({
         type: String,
         required: true
     },
+    // 가격
+    price: {
+        type: Number,
+        required: true
+    },
     // 할인율
     sale_ratio: {
         type: Number,

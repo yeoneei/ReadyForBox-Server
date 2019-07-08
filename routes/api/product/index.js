@@ -4,7 +4,8 @@ var router = express.Router();
 
 router.use('/package', require('./package'));
 router.use('/custom', require('./custom'));
-router.use('/detail', require('./detail'));
+router.use('/regular/detail', require('./regular_detail'));
+router.use('/package/detail', require('./package_detail'));
 
 
 // api Ver 2.0
