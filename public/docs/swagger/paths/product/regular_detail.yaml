@@ -7,7 +7,7 @@ get:
       name: product_id
       required: true
       schema:
-        type: integer
+        type: string
       description: 상품 id
   responses:
     '200':

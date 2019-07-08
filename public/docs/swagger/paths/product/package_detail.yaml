@@ -7,7 +7,7 @@ get:
       name: package_id
       required: true
       schema:
-        type: integer
+        type: string
       description: 패키지 id
   responses:
     '200':
@@ -29,16 +29,25 @@ get:
               data:
                 type: object
                 example: {
-                  "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
-                  "name": "삼다수",
-                  "content": "제주삼다수, 500ml, 40개입",
+                  "package_id": "5d230b82888d6787b4a41efb",
+                  "main_img": "akjasdbf",
+                  "name": "test",
                   "sale_ratio": 10,
-                  "price": 11700,
-                  "saled_price": 10000,
-                  "content_img": [
-                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
-                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
-                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf"
+                  "price": 220000,
+                  "saled_price": 198000,
+                  "product": [
+                      {
+                          "product_id": "5d22f3f7617cef8618be7988",
+                          "main_img": "alkfn",
+                          "name": "테스트aasdfasdf",
+                          "price": 110002
+                      },
+                      {
+                          "product_id": "5d230b3f63100c63a89cc92b",
+                          "main_img": "alkfn",
+                          "name": "테스트aasdfasdf",
+                          "price": 110002
+                      }
                   ]
                 }
     # '400':
