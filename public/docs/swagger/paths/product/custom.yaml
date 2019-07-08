@@ -72,55 +72,81 @@ get:
                   "package": [{
                       "package_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                      "name": "패키지패키지패키지",
+                      "saled_price": 48900
                     },
                     {
                       "package_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                      "name": "패키지패키지패키지",
+                      "saled_price": 48900                      
+                      
                     },
                     {
                       "package_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                      "name": "패키지패키지패키지",
+                      "saled_price": 48900                      
                     }],
                   "regular": [{
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   },
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   },
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   },
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   },
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
-                  }
-                  ],
-                  "not_important": [{
+                    "name": "제품명",
+                    "saled_price": 48900
+                  }],
+                  "regular_not_important": [{
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   },
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   },
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   },
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   },
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "name": "제품명",
+                    "saled_price": 48900
                   }]
                 }
     '400':

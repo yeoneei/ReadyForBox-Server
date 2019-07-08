@@ -42,15 +42,12 @@ paths:
 
   /mypage/user:
     $ref: './paths/mypage/user.yaml'
-  /mypage/orderlist:
-    $ref: './paths/mypage/orderlist.yaml'
-  /mypage/orderlist/detail:
-    $ref: './paths/mypage/detail.yaml'
-  /mypage/regular-delivery/product:
-    $ref: './paths/mypage/regular-delivery/product.yaml'
-  
-  /mypage/regular-delivery/change:
-    $ref: './paths/mypage/regular-delivery/change.yaml'
+  /mypage/order:
+    $ref: './paths/mypage/order.yaml'
+  /mypage/order/delivery:
+    $ref: './paths/mypage/delivery.yaml'
+
+
   /mypage/regular-delivery/change/address:
     $ref: './paths/mypage/regular-delivery/change/address.yaml'
   /mypage/regular-delivery/change/count-minus:
@@ -65,8 +62,3 @@ paths:
     $ref: './paths/mypage/regular-delivery/change/delivery-day.yaml'
   /mypage/regular-delivery/change/cancel:
     $ref: './paths/mypage/regular-delivery/change/cancel.yaml'
-  
-
-  /mypage/regular-delivery/subscribe:
-    $ref: './paths/mypage/regular-delivery/subscribe.yaml'
-

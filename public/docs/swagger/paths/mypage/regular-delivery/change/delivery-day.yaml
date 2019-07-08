@@ -1,7 +1,7 @@
 put:
   tags:
     - 마이페이지
-  summary: 마이페이지 정기배송 관리 - 배송 날짜 변경
+  summary: 정기 배송 관리 - 배송 날짜 변경
   parameters:
     - in: header
       name: token
@@ -15,17 +15,17 @@ put:
         schema:
           type: object
           properties:
-            order_item_id:
-              type: integer
-              description: 주문 물품 id
+            order_id:
+              type: stinrg
+              description: 주문 id
             delivery_day:
               type: integer
               description: 배송 날짜
           require:
-            - order_item_id
+            - order_id
             - delivery_day
           example:
-            order_item_id: 3
+            order_id: '12394721934a123978234'
             delivery_day: 27
   responses:
     '201':
