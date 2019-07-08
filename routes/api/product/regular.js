@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
     try {
         const { category, flag } = req.query;
 
-        
         if (!category || !flag) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         } else {

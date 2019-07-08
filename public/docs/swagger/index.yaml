@@ -37,8 +37,12 @@ paths:
     $ref: './paths/product/regular.yaml'
   /product/package:
     $ref: './paths/product/package.yaml'
-  /product/custom:
-    $ref: './paths/product/custom.yaml'
+  /product/regular/detail:
+    $ref: './paths/product/regular_detail.yaml'
+  /product/package/detail:
+    $ref: './paths/product/package_detail.yaml'
+  # /product/custom:
+  #   $ref: './paths/product/custom.yaml'
   /product/detail:
     $ref: './paths/product/detail.yaml'
 

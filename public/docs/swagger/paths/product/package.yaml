@@ -4,11 +4,11 @@ get:
   summary: 패키지 상품 리스트 보여주기
   parameters:
     - in: query
-      name: main_category_id
+      name: category
       required: true
       schema:
         type: integer
-      description: 카테고리 종류의 id (9~16)
+      description: 카테고리 이름
     - in: query
       name: flag
       required: true
@@ -42,16 +42,16 @@ get:
               data:
                 type: object
                 example: {
-                  product_count: 42,
-                  product: [{
-                    "product_id": "ab_1027492",
+                  package_count: 42,
+                  package: [{
+                    "package_id": "ab_1027492",
                     "name": "플레이팅 완벽하게 끝내기",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     "price": 58000,
                     "saled_price": 48900,
                   },
                   {
-                    "product_id": "ab_1027492",
+                    "package_id": "ab_1027492",
                     "name": "플레이팅 완벽하게 끝내기",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     "price": 58000,

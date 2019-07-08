@@ -1,0 +1,49 @@
+get:
+  tags:
+    - 상품
+  summary: 패키지 상품 세부 사항 조회
+  parameters:
+    - in: query
+      name: package_id
+      required: true
+      schema:
+        type: integer
+      description: 상품 id
+  responses:
+    '200':
+      description: 상품 데이터 조회 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: 데이터 조회 성공
+              data:
+                type: object
+                example: {
+                  "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  "name": "삼다수",
+                  "content": "제주삼다수, 500ml, 40개입",
+                  "sale_ratio": 10,
+                  "price": 11700,
+                  "saled_price": 10000,
+                  "content_img": [
+                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                    "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf"
+                  ]
+                }
+    # '400':
+    #   $ref: '../../components/responses.yaml#400-NULL_VALUE'
+    # '400 ':
+    #   $ref: '../../components/responses.yaml#400-WRONG_PARAMS'
+    # '500 ':
+    #   $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'

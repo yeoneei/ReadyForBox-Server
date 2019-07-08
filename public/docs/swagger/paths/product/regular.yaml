@@ -1,14 +1,14 @@
 get:
   tags:
     - 상품
-  summary: 정기 배송 상품 리스트 보여주기
+  summary: 정기 배송 상품 리스트 조회
   parameters:
     - in: query
-      name: main_category_id
+      name: category
       required: true
       schema:
         type: integer
-      description: 카테고리 종류의 id (1~8)
+      description: 카테고리 이름
     - in: query
       name: flag
       required: true
