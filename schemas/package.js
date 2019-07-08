@@ -31,6 +31,10 @@ const packageSchema = new Schema({
     deleted_at: {
         type: Date
     },
+    // 분류
+    category: {
+        type: [String]
+    },
     // 패키지 안에 포함되어 있는 상품들
     products: [{
         type: mongoose.Schema.Types.ObjectId,
