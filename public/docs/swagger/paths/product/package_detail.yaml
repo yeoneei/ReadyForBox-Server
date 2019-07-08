@@ -8,7 +8,7 @@ get:
       required: true
       schema:
         type: integer
-      description: 상품 id
+      description: 패키지 id
   responses:
     '200':
       description: 상품 데이터 조회 성공

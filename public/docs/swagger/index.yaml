@@ -41,18 +41,16 @@ paths:
     $ref: './paths/product/regular_detail.yaml'
   /product/package/detail:
     $ref: './paths/product/package_detail.yaml'
-  # /product/custom:
-  #   $ref: './paths/product/custom.yaml'
-  /product/detail:
-    $ref: './paths/product/detail.yaml'
+  /product/custom:
+    $ref: './paths/product/custom.yaml'
 
   /auth/signin:
     $ref: './paths/auth/signin.yaml'
   /auth/signup: 
     $ref: './paths/auth/signup.yaml'
 
-  /mypage/main:
-    $ref: './paths/mypage/main.yaml'
+  /mypage/user:
+    $ref: './paths/mypage/user.yaml'
   /mypage/orderlist:
     $ref: './paths/mypage/orderlist.yaml'
   /mypage/orderlist/detail:

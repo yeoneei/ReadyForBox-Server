@@ -8,7 +8,13 @@ get:
       required: true
       schema:
         type: integer
-      description: 카테고리 이름
+      description: |
+        카테고리 이름 
+        
+        (ex. 공간확보의달인, 가전제품, 우리집관리, 홈카페, 포근하게자기 )
+        
+        (주의. 띄어쓰기 하지 말 것)
+        
     - in: query
       name: flag
       required: true

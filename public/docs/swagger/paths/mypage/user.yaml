@@ -1,7 +1,7 @@
 get:
   tags:
     - 마이페이지
-  summary: 마이페이지 메인 화면
+  summary: 유저 정보 조회
   parameters:
     - in: header
       name: token
@@ -11,7 +11,7 @@ get:
       description: 로그인 토큰
   responses:
     '200':
-      description: 상품 데이터 조회 성공
+      description: 유저 데이터 조회 성공
       content:
         application/json:
           schema:
@@ -29,8 +29,13 @@ get:
               data:
                 type: object
                 example: {
-                  "name": "김혜진",
-                  "email": "hyejinii@naver.com"
+                  "user_id": "2",
+                  "name": "박재성",
+                  "email": "qkrwotjd1445@naver.com",
+                  "phone": 01051984332,
+                  "address": "인천광역시 남구 용현동 66-29 패밀리고시원 202호",
+                  "birth": "941011",
+                  "gender": 1
                 }
     '400':
       $ref: '../../components/responses.yaml#400-NULL_VALUE'

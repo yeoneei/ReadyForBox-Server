@@ -269,3 +269,4 @@ config/
 .env
 node_modules/
 module/
+.zip

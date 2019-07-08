@@ -5,12 +5,18 @@ const resMessage = require('../../../module/response/responseMessage');
 const statusCode = require('../../../module/response/statusCode');
 const jwt = require('../../../module/jwt');
 
+
 router.get('/', jwt.isLoggedIn, async(req, res) => {
     try {
         const { name, email } = req.decoded;
         const data = {
+            user_id,
             name,
-            email
+            email,
+            phone,
+            address,
+            birth,
+            gender
         };
         if (!name || !email) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));

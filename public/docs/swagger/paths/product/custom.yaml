@@ -9,51 +9,34 @@ get:
       schema:
         type: string
       description: |
-        (1순위로 지정한 값)
+        1순위로 지정한 값
+        
+        (ex. 청소, 요리, 수면, 인테리어, 옷관리)
 
-        clean: 청소
+        (주의. 띄어쓰기 하지 말 것)
 
-        cook: 요리
-
-        sleep: 수면
-
-        interior: 인테리어
-
-        clothes: 옷관리
     - in: query
       name: second
       required: true
       schema:
         type: string
       description: |
-        (2순위로 지정한 값)
+        2순위로 지정한 값
+        
+        (ex. 청소, 요리, 수면, 인테리어, 옷관리)
 
-        clean: 청소
-
-        cook: 요리
-
-        sleep: 수면
-
-        interior: 인테리어
-
-        clothes: 옷관리
+        (주의. 띄어쓰기 하지 말 것)
     - in: query
       name: fifth
       required: true
       schema:
         type: string
       description: |
-        (5순위로 지정한 값)
+        5순위로 지정한 값
+        
+        (ex. 청소, 요리, 수면, 인테리어, 옷관리)
 
-        clean: 청소
-
-        cook: 요리
-
-        sleep: 수면
-
-        interior: 인테리어
-
-        clothes: 옷관리
+        (주의. 띄어쓰기 하지 말 것)
     - in: query
       name: minprice
       required: true
@@ -87,18 +70,18 @@ get:
                 type: object
                 example: {
                   "package": [{
-                      "product_id": "ab_1027492",
+                      "package_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     },
                     {
-                      "product_id": "ab_1027492",
+                      "package_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     },
                     {
-                      "product_id": "ab_1027492",
+                      "package_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     }],
-                  "regularity": [{
+                  "regular": [{
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                   },
@@ -109,8 +92,25 @@ get:
                   {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
-                  }],
-                  "notImportant": [{
+                  },
+                  {
+                    "product_id": "ab_1027492",
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  },
+                  {
+                    "product_id": "ab_1027492",
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  }
+                  ],
+                  "not_important": [{
+                    "product_id": "ab_1027492",
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  },
+                  {
+                    "product_id": "ab_1027492",
+                    "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
+                  },
+                  {
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                   },
