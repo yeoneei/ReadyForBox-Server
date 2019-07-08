@@ -1,13 +1,13 @@
 get:
   tags:
     - 상품
-  summary: 패키지 상품 리스트 보여주기
+  summary: 패키지 상품 리스트 조회
   parameters:
     - in: query
       name: category
       required: true
       schema:
-        type: integer
+        type: string
       description: |
         카테고리 이름 
         

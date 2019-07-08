@@ -7,7 +7,7 @@ get:
       name: package_id
       required: true
       schema:
-        type: integer
+        type: string
       description: 패키지 id
   responses:
     '200':
