@@ -12,24 +12,19 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
     try {
         var connection = await pool.getConnection();
         const { user_id } = req.decoded;
-        const { delivery_address1, delivery_address2, delivery_address_detail, order_item_id } = req.body;
+        const { delivery_address1, delivery_address2, order_id } = req.body;
+        let { delivery_address_detail } = req.body;
 
-        if (!delivery_address1 || !delivery_address2 || !order_item_id) {
+        if (!delivery_address1 || !delivery_address2 || !order_id) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
             if (delivery_address_detail === undefined) {
-                delivery_address_detail = "";
-            };
-            // 테스트용
-            // order_id : tb_20191820192750
-            // regular_delivery_id : 3
-            // order_item_id : 3
-            // user_id : 9
-            let query1 = "UPDATE order_items LEFT JOIN orders ON order_items.order_id=orders.order_id "
-                + "SET delivery_address1 = ? , delivery_address2 = ?, delivery_address_detail = ? "
-                + "WHERE user_id = ? AND order_item_id = ?"
-            let result1 = await connection.query(query1, [delivery_address1, delivery_address2, delivery_address_detail, user_id, order_item_id]);
-            if (result1.affectedRows === 1) {
+                delivery_address_detail = '';
+            }
+            let query = "UPDATE orders SET delivery_address1 = ? , delivery_address2 = ?, delivery_address_detail = ? "
+                + "WHERE user_id = ? AND order_id = ?"
+            let result = await connection.query(query, [delivery_address1, delivery_address2, delivery_address_detail, user_id, order_id]);
+            if (result.affectedRows === 1) {
                 res.status(200).json(utils.successTrue(statusCode.NO_CONTENT, resMessage.UPDATE_SUCCESS));
             } else {
                 res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
