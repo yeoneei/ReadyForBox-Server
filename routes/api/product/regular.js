@@ -17,12 +17,14 @@ router.get('/', async (req, res) => {
         } else {
             var option = new Object();
 
-            if (!search) {
+            if (typeof search === 'undefined' && typeof category !== 'undefined') {
+                console.log("category")
                 option = {
                     category: { $in: [category] },
                     is_regular_product: true
                 }
-            } else if (!category) {
+            } else if (typeof search !== 'undefined' && typeof category === 'undefined') {
+                console.log("search")
                 option = {
                     $or: [{ name: { $regex: search } }, { content: { $regex: search } }],
                     is_regular_product: true
