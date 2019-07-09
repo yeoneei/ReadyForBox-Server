@@ -4,15 +4,15 @@ openapi: 3.0.0
 # API 문서에 대한 정보 (버전, 제목, 설명)
 info:
   version: '1.0.0'
-  title: '솝커툰 API'
-  description: '솝커툰 API'
+  title: '준비해BOX'
+  description: 'SOPT 24기 준비해BOX 앱잼'
   
 # API 서버에 대한 정보
 servers:
-  # - url: "http://13.209.206.99:3000/api" // 재성 EC2
+  - url: "http://13.209.206.99:3000/api"
   # - url: "http//15.164.83.64:3000/api"
-  - url: "http://localhost:3000/api"
-    description: 솝커툰 API # 제공하는 API에 대한 설명
+  # - url: "http://localhost:3000/api"
+    description: 준비해BOX API # 제공하는 API에 대한 설명
 
 tags:
   - name: 상품

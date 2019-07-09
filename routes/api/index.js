@@ -7,6 +7,10 @@ router.use('/product',require('./product'));
 router.use('/mypage', require('./mypage'));
 router.use('/auth', require('./auth'));
 
+//csv파일로 한 번에 실제 데이터 삽입
+router.use('/insert_data', require('./insert_data'));
+
+// 데이터 임의로 몇개만 삽입
 router.post('/', async (req, res) => {
     try {
         const { name, main_img, price, is_regular_product, is_package_product, category, sale_ratio, content } = req.body;
@@ -35,13 +39,13 @@ router.post('/', async (req, res) => {
         console.log('product 결과값 : ', result);
         console.log('package 결과값 : ', result2)
 
-
-
     } catch (err) {
         console.log(err);
     }
-    
+});
 
-})
+
+
+
 
 module.exports = router;
