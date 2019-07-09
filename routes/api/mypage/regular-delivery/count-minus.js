@@ -13,7 +13,7 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
         const { order_id, product_id } = req.body;
         const { user_id } = req.decoded;
 
-        if (!order_id || !user_id) {
+        if (!order_id || !user_id || !product_id) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
             let query1 = "SELECT count FROM orders "
