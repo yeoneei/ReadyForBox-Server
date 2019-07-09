@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
                     content: products[i].content,
                     main_img: products[i].main_img,
                     price: products[i].price,
-                    saled_price: Math.round(products[i].price * (((100 - products[i].sale_ratio) / 100)), 0)
+                    saled_price: Math.round((products[i].price * ((100 - products[i].sale_ratio) / 100))*0.01) * 100
                 }
             }
 

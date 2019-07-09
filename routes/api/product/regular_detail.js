@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
                 content: products[0].content,
                 sale_ratio: products[0].sale_ratio,
                 price: products[0].price,
-                saled_price: Math.round(products[0].price * (((100 - products[0].sale_ratio) / 100)), 0),
+                saled_price: Math.round(products[0].price * (((100 - products[0].sale_ratio) / 100))*0.01) * 100,
                 content_img: products[0].content_img
             }
             res.status(200).json(utils.successTrue(statusCode.OK, responseMessage.READ_SUCCESS, data));

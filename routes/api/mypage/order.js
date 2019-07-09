@@ -50,7 +50,7 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {
                         packages.main_img = package[0].main_img;
                         packages.name = package[0].name;
                         packages.count = result4[i].count;
-                        packages.saled_price = Math.round(package[0].price * (((100 - package[0].sale_ratio) / 100)), 0);
+                        packages.saled_price = Math.round(package[0].price * (((100 - package[0].sale_ratio) / 100))*0.01) * 100
                         packageArr.push(packages);
                     }
                 }
@@ -71,7 +71,7 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {
                         regular.name = products[0].name;
                         regular.content = products[0].content;
                         regular.count = result3[i].count;
-                        regular.saled_price = Math.round(products[0].price * (((100 - products[0].sale_ratio) / 100)), 0);
+                        regular.saled_price = Math.round(products[0].price * (((100 - products[0].sale_ratio) / 100))*0.01) * 100
                         regular.is_subscribed = result2[0].is_subscribed;
                         regularArr.push(regular);
                     }

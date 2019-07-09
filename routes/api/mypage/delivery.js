@@ -20,7 +20,6 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {
             let query = "SELECT * FROM orders WHERE user_id = ? AND order_id = ?"
             let result = await connection.query(query, [user_id, order_id]);
             if (!result[0]) {
-                console.log("err")
                 res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
             } else {
                 let data = {
