@@ -18,40 +18,40 @@ router.get('/', async (req, res) => {
             console.log(test);
             // 최신순
             if (flag == 1) {
-                var packages = await Package.find({
+                var package = await Package.find({
                     category: { $in: [category]},
                 }).
                 sort({ created_at: 'desc' })
 
             // 가격 낮은 순
             } else if (flag == 3) {
-                var packages = await Package.find({
+                var package = await Package.find({
                     category: { $in: [category]},
                 }).
                 sort({ price: 'asc' })
 
             // 가격 높은 순
             } else if (flag == 4) {
-                var packages = await Package.find({
+                var package = await Package.find({
                     category: { $in: [category]},
                 }).
                 sort({ price: 'desc' })
             }
 
             let package_data = [];
-            for(let i = 0; i < packages.length; i++) {
+            for(let i = 0; i < package.length; i++) {
                 package_data[i] = {
-                    package_id: packages[i]._id,
-                    name: packages[i].name,
-                    main_img: packages[i].main_img,
-                    price: packages[i].price,
-                    saled_price: Math.round(packages[i].price * (((100 - packages[i].sale_ratio) / 100))*0.01) * 100
+                    package_id: package[i]._id,
+                    name: package[i].name,
+                    main_img: package[i].main_img,
+                    price: package[i].price,
+                    saled_price: Math.round(package[i].price * (((100 - package[i].sale_ratio) / 100))*0.01) * 100
                 }
             }
 
             const data = {
-                package_count: packages.length,
-                package: package_data
+                package_count: package.length,
+                packages: package_data
             }
             
             res.status(200).json(utils.successTrue(statusCode.OK, responseMessage.READ_SUCCESS, data));
