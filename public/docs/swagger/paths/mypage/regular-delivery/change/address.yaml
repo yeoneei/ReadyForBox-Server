@@ -1,7 +1,7 @@
 put:
   tags:
     - 마이페이지
-  summary: 배송주소 변경
+  summary: 정기 배송 관리 - 주소 변경
   parameters:
     - in: header
       name: token
@@ -15,9 +15,9 @@ put:
         schema:
           type: object
           properties:
-            order_item_id:
-              type: integer
-              description: 주문 물품 id
+            order_id:
+              type: string
+              description: 주문 id
             delivery_address1:
               type: string
               description: 배송 주소 1
@@ -28,11 +28,11 @@ put:
               type: string
               description: 배송 상세 주소
           require:
-            - order_item_id
+            - order_id
             - delivery_address1
             - delivery_address2
           example:
-            order_item_id: '3'
+            order_id: '309237402394la02340982'
             delivery_address1: 인천광역시 남구
             delivery_address2: 미추홀구
             delivery_address_detail: 롯데캐슬 301호

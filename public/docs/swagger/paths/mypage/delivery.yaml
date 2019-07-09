@@ -1,7 +1,7 @@
 get:
   tags:
     - 마이페이지
-  summary: 마이페이지 주문 내역 상세
+  summary: 주문 내역에서의 배송지 정보
   parameters:
     - in: header
       name: token
@@ -10,14 +10,14 @@ get:
         type: string
       description: 로그인 토큰
     - in: query
-      name: order_item_id
+      name: order_id
       required: true
       schema:
         type: integer
-      description: 주문 물품 id
+      description: 주문 id
   responses:
     '200':
-      description: 상품 데이터 조회 성공
+      description: 배송지 데이터 조회 성공
       content:
         application/json:
           schema:
@@ -35,14 +35,12 @@ get:
               data:
                 type: object
                 example: {
-                  "created_at": "2019.06.16.10:33:22",
-                  "main_img": "alkasndflkasndflkasdnklasdnf.alkkansdfnl",
-                  "name": "5구 멀티탭",
-                  "saled_price": 13000,
-                  "count": 1,
-                  "is_package": 1,
-                  "order_id": 20190619824798124
+                  "receiver": "진하은",
+                  "phone": "01097001234",
+                  "address": "경기도 구리시 구리아파트 105동 702호",
+                  "delivery_memo": "배송 메시지를 선택해주세요"
                 }
+                
     '400':
       $ref: '../../components/responses.yaml#400-NULL_VALUE'
     '400 ':
