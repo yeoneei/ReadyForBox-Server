@@ -24,7 +24,7 @@ put:
           require:
             - order_id
           example: 
-            order_item_id: '235235523asdf2023059203'
+            order_id: '235235523asdf2023059203'
             delivery_memo: '현관문 앞'
 
   responses:

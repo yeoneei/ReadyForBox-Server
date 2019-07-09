@@ -18,10 +18,15 @@ put:
             order_id:
               type: string
               description: 주문 id
+            product_id:
+              type: string
+              description: 상품 id
           require:
             - order_id
+            - product_id
           example:
             order_id: '230947239047a2304923490'
+            product_id: '27823492a239487234'
   responses:
     '201':
       $ref: '../../../../components/responses.yaml#201-SAVE_SUCCESS'

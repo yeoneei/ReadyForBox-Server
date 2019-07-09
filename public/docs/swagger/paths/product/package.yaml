@@ -49,7 +49,7 @@ get:
                 type: object
                 example: {
                   package_count: 42,
-                  package: [{
+                  packages: [{
                     "package_id": "ab_1027492",
                     "name": "플레이팅 완벽하게 끝내기",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",

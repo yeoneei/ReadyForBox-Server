@@ -31,6 +31,10 @@ const productSchema = new Schema({
         type: Number,
         default: 0
     },
+    saled_price: {
+        type: Number,
+        required: true
+    },
     // 상품 등록 시간
     created_at: {
         type: Date,

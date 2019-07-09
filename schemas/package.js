@@ -23,6 +23,11 @@ const packageSchema = new Schema({
         type: Number,
         default: 0
     },
+    // 할인 가격
+    saled_price: {
+        type: Number,
+        required: true
+    },
     // 패키지 상품을 등록한 시간
     created_at: {
         type: Date,
