@@ -12,27 +12,17 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
         var connection = await pool.getConnection();
 
         const { user_id } = req.decoded;
-        const { order_item_id, delivery_memo } = req.body;
-        if (!order_item_id || !delivery_memo || !user_id) {
+        const { order_id, delivery_memo } = req.body;
+        if (!order_id || !delivery_memo || !user_id) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
-            let query = "SELECT order_items.order_id FROM order_items LEFT JOIN orders "
-                + "ON order_items.order_id = orders.order_id WHERE order_item_id = ? AND user_id = ?";
-            let result = await connection.query(query, [order_item_id, user_id]);
-            
-
-            if (!result[0]) {
-                res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
+            let query = "UPDATE orders SET delivery_memo = ? WHERE order_id = ? AND user_id = ?";
+            let result = await connection.query(query, [delivery_memo, order_id, user_id]);
+            console.log(result.affectedRows === 1);
+            if (result.affectedRows === 1) {
+                res.status(200).json(utils.successTrue(statusCode.NO_CONTENT, resMessage.UPDATE_SUCCESS));
             } else {
-                const { order_id } = result[0];
-                let query2 = "UPDATE orders SET delivery_memo = ? WHERE order_id = ?";
-                let result2 = await connection.query(query2, [delivery_memo, order_id]);
-                console.log(result2.affectedRows === 1);
-                if (result2.affectedRows === 1) {
-                    res.status(200).json(utils.successTrue(statusCode.NO_CONTENT, resMessage.UPDATE_SUCCESS));
-                } else {
-                    res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
-                }
+                res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
             }
         }
     } catch (err) {
