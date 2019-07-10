@@ -1,7 +1,7 @@
 put:
   tags:
     - 마이페이지
-  summary: 마이페이지 정기배송 관리 - 요청 사항 변경
+  summary: 정기 배송 관리 - 요청 사항 변경
   parameters:
     - in: header
       name: token
@@ -15,17 +15,17 @@ put:
         schema:
           type: object
           properties:
-            order_item_id:
-              type: integer
-              description: 주문 물품 id
+            order_id:
+              type: string
+              description: 주문 id
             delivery_memo:
               type: string
               description: 배송 요청사항
           require:
-            - order_item_id
+            - order_id
           example: 
-            order_item_id: 3
-            delivery_memo: 현관문 앞
+            order_id: '235235523asdf2023059203'
+            delivery_memo: '현관문 앞'
 
   responses:
     '201':

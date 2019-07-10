@@ -1,7 +1,7 @@
 get:
   tags:
     - 마이페이지
-  summary: 마이페이지 메인 화면
+  summary: 주문 내역에서의 배송지 정보
   parameters:
     - in: header
       name: token
@@ -9,9 +9,15 @@ get:
       schema: 
         type: string
       description: 로그인 토큰
+    - in: query
+      name: order_id
+      required: true
+      schema:
+        type: integer
+      description: 주문 id
   responses:
     '200':
-      description: 상품 데이터 조회 성공
+      description: 배송지 데이터 조회 성공
       content:
         application/json:
           schema:
@@ -29,9 +35,12 @@ get:
               data:
                 type: object
                 example: {
-                  "name": "김혜진",
-                  "email": "hyejinii@naver.com"
+                  "receiver": "진하은",
+                  "phone": "01097001234",
+                  "address": "경기도 구리시 구리아파트 105동 702호",
+                  "delivery_memo": "배송 메시지를 선택해주세요"
                 }
+                
     '400':
       $ref: '../../components/responses.yaml#400-NULL_VALUE'
     '400 ':

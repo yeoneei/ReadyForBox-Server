@@ -4,15 +4,19 @@ openapi: 3.0.0
 # API 문서에 대한 정보 (버전, 제목, 설명)
 info:
   version: '1.0.0'
-  title: '솝커툰 API'
-  description: '솝커툰 API'
+  title: '준비해BOX'
+  description: 'SOPT 24기 준비해BOX 앱잼'
   
 # API 서버에 대한 정보
 servers:
-  # - url: "http://13.209.206.99:3000/api"
+  - url: "http://13.209.206.99:3000/api"
   # - url: "http//15.164.83.64:3000/api"
+<<<<<<< HEAD
   - url: "http://localhost:3000/api"
-    description: 솝커툰 API # 제공하는 API에 대한 설명
+=======
+  # - url: "http://localhost:3000/api"
+>>>>>>> feature/36
+    description: 준비해BOX API # 제공하는 API에 대한 설명
 
 tags:
   - name: 상품
@@ -22,42 +26,32 @@ tags:
   - name: 마이페이지
     description: 마이페이지 관련
 
-  - name: 웹툰
-    description: 웹툰 관련
-  - name: 웹툰 에피소드
-    description: 웹툰 에피소드 관련
-  - name: 댓글
-    description: 댓글관련
-  - name: 기타 기능
-    description: 기타 기능 관련
-
 # 각 URI에 대한 정보를 기재
 paths:
   /product/regular:
     $ref: './paths/product/regular.yaml'
   /product/package:
     $ref: './paths/product/package.yaml'
+  /product/regular/detail:
+    $ref: './paths/product/regular_detail.yaml'
+  /product/package/detail:
+    $ref: './paths/product/package_detail.yaml'
   /product/custom:
     $ref: './paths/product/custom.yaml'
-  /product/detail:
-    $ref: './paths/product/detail.yaml'
 
   /auth/signin:
     $ref: './paths/auth/signin.yaml'
   /auth/signup: 
     $ref: './paths/auth/signup.yaml'
 
-  /mypage/main:
-    $ref: './paths/mypage/main.yaml'
-  /mypage/orderlist:
-    $ref: './paths/mypage/orderlist.yaml'
-  /mypage/orderlist/detail:
-    $ref: './paths/mypage/detail.yaml'
-  /mypage/regular-delivery/product:
-    $ref: './paths/mypage/regular-delivery/product.yaml'
-  
-  /mypage/regular-delivery/change:
-    $ref: './paths/mypage/regular-delivery/change.yaml'
+  /mypage/user:
+    $ref: './paths/mypage/user.yaml'
+  /mypage/order:
+    $ref: './paths/mypage/order.yaml'
+  /mypage/order/delivery:
+    $ref: './paths/mypage/delivery.yaml'
+
+
   /mypage/regular-delivery/change/address:
     $ref: './paths/mypage/regular-delivery/change/address.yaml'
   /mypage/regular-delivery/change/count-minus:
@@ -72,8 +66,3 @@ paths:
     $ref: './paths/mypage/regular-delivery/change/delivery-day.yaml'
   /mypage/regular-delivery/change/cancel:
     $ref: './paths/mypage/regular-delivery/change/cancel.yaml'
-  
-
-  /mypage/regular-delivery/subscribe:
-    $ref: './paths/mypage/regular-delivery/subscribe.yaml'
-

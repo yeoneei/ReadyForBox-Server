@@ -1,7 +1,7 @@
 put:
   tags:
     - 마이페이지
-  summary: 마이페이지 정기배송 관리 - 수량 감소
+  summary: 정기 배송 관리 - 수량 감소
   parameters:
     - in: header
       name: token
@@ -15,13 +15,18 @@ put:
         schema:
           type: object
           properties:
-            order_item_id:
-              type: integer
-              description: 주문 물품 id
+            order_id:
+              type: string
+              description: 주문 id
+            product_id:
+              type: string
+              description: 상품 id
           require:
-            - order_item_id
+            - order_id
+            - product_id
           example:
-            order_item_id: 3
+            order_id: '230947239047a2304923490'
+            product_id: '27823492a239487234'
   responses:
     '201':
       $ref: '../../../../components/responses.yaml#201-SAVE_SUCCESS'

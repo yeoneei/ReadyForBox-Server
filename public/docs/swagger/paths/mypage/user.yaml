@@ -1,17 +1,17 @@
 get:
   tags:
-    - 웹툰 에피소드
-  summary: 웹툰 에피소드의 내용(웹툰)
+    - 마이페이지
+  summary: 유저 정보 조회
   parameters:
-    - in: query
-      name: contentsIdx
+    - in: header
+      name: token
       required: true
-      schema:
-        type: integer
-      description: 웹툰 에피소드 인덱스
+      schema: 
+        type: string
+      description: 로그인 토큰
   responses:
     '200':
-      description: 데이터 조회 성공
+      description: 유저 데이터 조회 성공
       content:
         application/json:
           schema:
@@ -27,18 +27,15 @@ get:
                 type: string
                 example: 데이터 조회 성공
               data:
-                type: array
+                type: object
                 example: {
-                  webtoon_title: "무너의 삶",
-                  episodes_images: [{
-                    "contentsImgIdx": 1,
-                    "image": "https://akasndflasdnkf.a"
-                  },
-                  {
-                    "contentsImgIdx": 1,
-                    "image": "https://akasndflasdnkf.a"
-                  },
-                  ]
+                  "user_id": "2",
+                  "name": "박재성",
+                  "email": "qkrwotjd1445@naver.com",
+                  "phone": 01051984332,
+                  "address": "인천광역시 남구 용현동 66-29 패밀리고시원 202호",
+                  "birth": "941011",
+                  "gender": 1
                 }
     '400':
       $ref: '../../components/responses.yaml#400-NULL_VALUE'

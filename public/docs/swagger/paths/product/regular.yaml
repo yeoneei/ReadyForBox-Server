@@ -1,14 +1,19 @@
 get:
   tags:
     - 상품
-  summary: 정기 배송 상품 리스트 보여주기
+  summary: 정기 배송 상품 리스트 조회
   parameters:
     - in: query
-      name: main_category_id
+      name: category
       required: true
       schema:
-        type: integer
-      description: 카테고리 종류의 id (1~8)
+        type: string
+      description: | 
+        카테고리 이름 
+        
+        (ex. 생수/음료, 세제/섬유유연제, 욕실용품, 휴지/물티슈, 청소용품)
+
+        (주의. 띄어쓰기 하지 말 것)
     - in: query
       name: flag
       required: true
