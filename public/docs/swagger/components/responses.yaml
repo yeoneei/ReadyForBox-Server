@@ -47,7 +47,7 @@
             type: string
             example: '데이터 수정 성공'
 400-WRONG_PARAMS:
-  description: Params나 Body에 잘못된 값이 입력된 경우
+  description: Params나 Body에 잘못된 값이 입력되어서 조회(or 쓰기 or 수정 or 삭제)할 데이터가 없습니다. (또는 서버의 DB에 데이터를 넣지 않아서 발생하는 에러일 수도 있습니다.)
   content:
     application/json:
       schema:
@@ -61,9 +61,9 @@
             example: false
           message:
             type: string
-            example: Params나 Body에 잘못된 값이 입력된 경우
+            example: Params나 Body에 잘못된 값이 입력되어서 조회(or 쓰기 or 수정 or 삭제)할 데이터가 없습니다. (또는 서버의 DB에 데이터를 넣지 않아서 발생하는 에러일 수도 있습니다.)
 400-NULL_VALUE:
-  description: Params나 Body 값에 Null이 존재합니다. 
+  description: Params나 Body 중 필수적으로 입력해야 하는 값인데, 입력하지 않은 값(NULL)이 존재합니다.
   content:
     application/json:
       schema:
@@ -77,7 +77,7 @@
             example: false
           message:
             type: string
-            example: Params나 Body값에 Null이 존재합니다.
+            example: Params나 Body 중 필수적으로 입력해야 하는 값인데, 입력하지 않은 값(NULL)이 존재합니다.
 400-TOO_MANY_FILES:
   description: 사진이 2장 이상 첨부된 경우
   content:
@@ -111,7 +111,7 @@
             type: string
             example: 데이터를 작성한 사용자만 수정 및 삭제할 수 있습니다.
 500-INTERNAL_SERVER_ERROR:
-  description: 서버 에러
+  description: 서버측에서 발생한 에러입니다.
   content:
     application/json:
       schema:
