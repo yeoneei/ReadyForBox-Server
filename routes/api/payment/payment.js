@@ -30,11 +30,34 @@ router.get('/',  async (req, res) => {
         // 2. 여러 개의 상품을 합한 이름 (name)
         // -> 삼다수 40ml, 500개입 외 3개  
         // -> 상품이 1개일 경우 : { 첫 번째 상품 }
-        //    상품이 2개 이상일 경우 : { 첫 번째 상품 } 외 { 주문할 상품 총 개수 - 1}개
+        //    상품이 2개 이상일 경우 : { 첫 번째 상품 } 외 { 주문할 상품 총 개수 - 1} 개
 
-        // test용
-        const order = { 'amount': 100, 'name': '삼다수 40ml, 5개입 외 3개'}
+        // 클라한테 장바구니(결제) 페이지에서 받아야 하는 값
+        // amount : 총 상품 가격
+        // product1_name : 첫 번째 상품 이름
+        // product_count : 상품 종류 개수
+        const { amount, product1_name, product_species_count } = req.query;
         
+        let temp_name;
+        if (product_species_count == 1) {
+            temp_name = product1_name;
+        } else if (product_species_count > 1) {
+            temp_name = product1_name + ' 외 ' + (product_species_count - 1) + '개';
+        }
+        
+
+        // const order = { 
+        //     amount, 
+        //     name: temp_name,
+        // }
+
+        // 테스트용
+        const order = {
+            amount: 100,
+            name: "테스트용"
+        }
+        
+        // 결제 창을 띄워주는 payment.ejs를 불러줌. 
         res.render('payment', { user, order });
     }
     catch (err) {

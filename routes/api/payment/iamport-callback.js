@@ -65,7 +65,7 @@ router.post('/schedule', async (req, res) => {
                             merchant_uid: 'md_' + new Date().getTime(),
                             schedule_at: new Date().getTime()/1000 + 240,
                             amount: 200,
-                            name: '정기 결제 스케쥴링 아이템'
+                            name: '정기 결제 스케쥴링 아이템',
                         }
                     ]
                 }
