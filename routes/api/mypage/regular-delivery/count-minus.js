@@ -10,17 +10,18 @@ const jwt = require('../../../../module/jwt');
 router.put('/', jwt.isLoggedIn, async (req, res) => {
     try {
         var connection = await pool.getConnection();
-        const { order_item_id } = req.body;
+        const { order_id, product_id } = req.body;
         const { user_id } = req.decoded;
 
-        if (!order_item_id || !user_id) {
+        if (!order_id || !user_id || !product_id) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
-            let query1 = "SELECT count FROM order_items "
-            + "LEFT JOIN orders ON order_items.order_id = orders.order_id "
-            + "WHERE order_item_id = ? AND user_id = ?"
-            let result1 = await connection.query(query1, [order_item_id, user_id]);
-            
+            let query1 = "SELECT count FROM orders "
+                + "LEFT JOIN orders_products ON orders.order_id = orders_products.order_id "
+                + "LEFT JOIN products ON orders_products.product_id = products.product_id "
+                + "WHERE orders.order_id = ? AND user_id = ? AND products.product_id = ?"
+            let result1 = await connection.query(query1, [order_id, user_id, product_id]);
+            console.log(result1[0]);
             if (!result1[0]) {
                 res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_PARAMS));
             } else {
@@ -28,8 +29,8 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
 
                 // 수량이 1개일 때는 감소 시킬 수 없다.
                 if (count > 1) {
-                    let query2 = "UPDATE order_items SET count = count - 1 WHERE order_item_id = ?"
-                    let result2 = await connection.query(query2, [order_item_id]);
+                    let query2 = "UPDATE products SET count = count - 1 WHERE product_id = ?"
+                    let result2 = await connection.query(query2, [product_id]);
                     if (result2.affectedRows === 1) {
                         res.status(200).json(utils.successTrue(statusCode.NO_CONTENT, resMessage.UPDATE_SUCCESS));
                     } else {

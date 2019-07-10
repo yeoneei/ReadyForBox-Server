@@ -39,11 +39,11 @@ router.get('/', async (req, res) => {
             let package_data = [];
             for(let i = 0; i < package.length; i++) {
                 package_data[i] = {
-                    package_id: packages[i]._id,
-                    name: packages[i].name,
-                    main_img: packages[i].main_img,
-                    price: packages[i].price,
-                    saled_price: Math.round(packages[i].price * (((100 - packages[i].sale_ratio) / 100))*0.01) * 100
+                    package_id: package[i]._id,
+                    name: package[i].name,
+                    main_img: package[i].main_img,
+                    price: package[i].price,
+                    saled_price: Math.round(package[i].price * (((100 - package[i].sale_ratio) / 100)) * 0.01) * 100
                 }
             }
 
