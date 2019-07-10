@@ -8,8 +8,6 @@ const axios = require('axios');
 const pool = require('../../../config/dbConfig');
 
 // 결제를 시도하는 라우팅
-
-// 파일 다시 올리고 다시 실행시켜보기!! -> 결제되는지 확인하기!!
 router.post('/', async (req, res) => {
     try {
         var connection = await pool.getConnection();
