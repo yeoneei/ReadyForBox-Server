@@ -14,9 +14,18 @@ get:
         (ex. 생수/음료, 세제/섬유유연제, 욕실용품, 휴지/물티슈, 청소용품)
 
         (주의. 띄어쓰기 하지 말 것)
+
+        (단, category 파라미터와 search 파라미터 둘 중 하나의 파라미터에만 값을 넣어야 합니다.)
+    - in: query
+      name: search
+      schema: 
+        type: integer
+      description: |
+        검색어
+
+        (단, category 파라미터와 search 파라미터 둘 중 하나의 파라미터에만 값을 넣어야 합니다.)
     - in: query
       name: flag
-      required: true
       schema: 
         type: integer
       description: |
@@ -70,5 +79,7 @@ get:
                 }
     '400':
       $ref: '../../components/responses.yaml#400-NULL_VALUE'
-    '500':
+    '400 ':
+      $ref: '../../components/responses.yaml#400-SEARCH_OR_CATEGORY'
+    '500 ':
       $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'

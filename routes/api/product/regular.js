@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
                     is_regular_product: true
                 }
             } else {
-                res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+                res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.SEARCH_OR_CATEGORY));
             }
             // 최신순
             if (flag == 1) {

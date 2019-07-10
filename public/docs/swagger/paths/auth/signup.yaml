@@ -92,20 +92,6 @@ post:
     '400':
       $ref: '../../components/responses.yaml#400-NULL_VALUE'
     '400 ':
-      description: 중복된 아이디가 존재하는 경우
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: integer
-                example: 400
-              success:
-                type: boolean
-                example: false
-              message:
-                type: string
-                example: 중복된 아이디가 존재합니다.
+      $ref: '../../components/responses.yaml#400-ALREADY_USER'
     '500 ':
       $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'

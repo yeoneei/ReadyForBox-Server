@@ -43,23 +43,11 @@ post:
                 example: {
                   "token":  "asdgasdgoiMTIzIasdgasdg-pFOwKZtyKPDhVOMQ2C8w"
                 }
-  #   '400':
-  #     $ref: '../../components/responses.yaml#400-NULL_VALUE'
-  #   '401':
-  #     description: 아이디나 비밀번호가 일치하지 않아서 로그인 실패
-  #     content:
-  #       application/json:
-  #         schema:
-  #           type: object
-  #           properties:
-  #             status:
-  #               type: integer
-  #               example: 401
-  #             success:
-  #               type: boolean
-  #               example: false
-  #             message:
-  #               type: string
-  #               example: 아이디나 비밀번호가 일치하지 않습니다.
-  #   '500 ':
-  #     $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
+    '400':
+      $ref: '../../components/responses.yaml#400-NULL_VALUE'
+    '400 ':
+      $ref: '../../components/responses.yaml#400-NULL_USER'
+    '400  ':
+      $ref: '../../components/responses.yaml#400-INVALID_PASSWORD'
+    '500  ':
+      $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'

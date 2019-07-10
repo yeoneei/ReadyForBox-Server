@@ -41,9 +41,7 @@ get:
                     "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf"
                   ]
                 }
-    # '400':
-    #   $ref: '../../components/responses.yaml#400-NULL_VALUE'
-    # '400 ':
-    #   $ref: '../../components/responses.yaml#400-WRONG_PARAMS'
-    # '500 ':
-    #   $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
+    '400':
+      $ref: '../../components/responses.yaml#400-NULL_VALUE'
+    '500':
+      $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
