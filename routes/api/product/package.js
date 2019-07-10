@@ -14,8 +14,6 @@ router.get('/', async (req, res) => {
         if (!category || !flag) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         } else {
-            var test = await Package.find();
-            console.log(test);
             // 최신순
             if (flag == 1) {
                 var package = await Package.find({
@@ -45,7 +43,7 @@ router.get('/', async (req, res) => {
                     name: package[i].name,
                     main_img: package[i].main_img,
                     price: package[i].price,
-                    saled_price: Math.round(package[i].price * (((100 - package[i].sale_ratio) / 100))*0.01) * 100
+                    saled_price: Math.round(package[i].price * (((100 - package[i].sale_ratio) / 100)) * 0.01) * 100
                 }
             }
 
