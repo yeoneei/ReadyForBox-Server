@@ -10,11 +10,11 @@ router.post('/', async(req, res) => {
     try {
         var connection = await pool.getConnection();
         await connection.beginTransaction();
-        const { email, name, birth, phone, gender, address1, address2, address_detail, delivery_memo } = req.body;
+        let { email, name, birth, phone, gender, address1, address2, address_detail, delivery_memo } = req.body;
         let { password } = req.body;
 
         // 테스트용 order_id(주문 번호)
-        const order_id = 'tb_20191820192750';
+        const order_id = new Date().getUTCMilliseconds();
 
         // Params나 Body값에 필수적으로 들어와야 하는 값이 들어오지 않은 경우
         if (!email || !name || !birth || !phone || !gender || !address1 || !address2 || !password) {
@@ -34,6 +34,12 @@ router.post('/', async(req, res) => {
                 password = await cryptoPassword.hashedPassword(password, salt);
 
                 // users에 회원 정보 데이터 삽입하는 쿼리
+                if (!address_detail) {
+                    address_detail = ""
+                }
+                if (!delivery_memo) {
+                    delivery_memo = ""
+                }
                 query = 'INSERT INTO users '
                     + '(name, password, email, phone, address1, '
                     + 'address2, address_detail, birth, gender, salt) ' 

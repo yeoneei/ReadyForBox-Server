@@ -14,32 +14,30 @@ router.get('/', async (req, res) => {
         if (!category || !flag) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         } else {
-            var test = await Package.find();
-            console.log(test);
             // 최신순
             if (flag == 1) {
-                var packages = await Package.find({
+                var package = await Package.find({
                     category: { $in: [category]},
                 }).
                 sort({ created_at: 'desc' })
 
             // 가격 낮은 순
             } else if (flag == 3) {
-                var packages = await Package.find({
+                var package = await Package.find({
                     category: { $in: [category]},
                 }).
                 sort({ price: 'asc' })
 
             // 가격 높은 순
             } else if (flag == 4) {
-                var packages = await Package.find({
+                var package = await Package.find({
                     category: { $in: [category]},
                 }).
                 sort({ price: 'desc' })
             }
 
             let package_data = [];
-            for(let i = 0; i < packages.length; i++) {
+            for(let i = 0; i < package.length; i++) {
                 package_data[i] = {
                     package_id: packages[i]._id,
                     name: packages[i].name,
@@ -50,8 +48,8 @@ router.get('/', async (req, res) => {
             }
 
             const data = {
-                package_count: packages.length,
-                package: package_data
+                package_count: package.length,
+                packages: package_data
             }
             
             res.status(200).json(utils.successTrue(statusCode.OK, responseMessage.READ_SUCCESS, data));
