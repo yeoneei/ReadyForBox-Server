@@ -29,7 +29,7 @@ get:
               data:
                 type: object
                 example: {
-                  "customer_uid": "cd_1562832084980",
+                  "customer_uid": "cd_1562839696",
                   "card": {
                       "card_code": "366",
                       "card_name": "신한카드",
