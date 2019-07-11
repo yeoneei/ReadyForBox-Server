@@ -43,6 +43,6 @@ get:
                       "inserted": 1562832074,
                       "updated": 1562832074
                   }
-                s}
+                }
     '500 ':
       $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
