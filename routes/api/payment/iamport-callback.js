@@ -54,6 +54,13 @@ router.post('/schedule', async (req, res) => {
 
             let { user_id, delivery_address1, delivery_address2, delivery_address_detail,
                 delivery_memo, phone, receiver } = result[0];
+
+            if (!delivery_address_detail) {
+                delivery_address_detail = "";
+            }
+            if (!delivery_memo) {
+                delivery_memo = "";
+            }
             console.log('user_id : ', user_id);
             
             let query2 = 'SELECT customer_uid FROM users WHERE user_id = ?';
@@ -62,6 +69,7 @@ router.post('/schedule', async (req, res) => {
 
             let new_merchant_uid = 'md_' + new Date().getTime();
             
+
             // 새로운 주문에 대한 정보 삽입
             let query3 = 'INSERT INTO orders '
             + '(order_id, delivery_address1, delivery_address2, delivery_address_detail, delivery_memo, '

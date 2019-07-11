@@ -69,7 +69,7 @@ post:
             customer_uid: 'cd_209234092347234'
             delivery_address1: '인천광역시 남구'
             delivery_address2: '용현동 66-29'
-            delivery_detail: '패밀리고시원 202호'
+            delivery_address_detail: '패밀리고시원 202호'
             delivery_memo: '현관문 앞'
             phone: '01051984332'
             receiver: '고성진'
