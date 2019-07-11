@@ -1,6 +1,6 @@
 get:
   tags:
-    - 결제 관련
+    - 결제
   summary: 등록한 카드 정보 조회
   parameters:
     - in: header

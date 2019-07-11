@@ -68,4 +68,4 @@ paths:
   /payment/card-enrollment:
     $ref: './paths/payment/card-enrollment.yaml'
   /payment/card:
-    $ref: './paths/payment/card'
+    $ref: './paths/payment/card.yaml'
