@@ -40,7 +40,7 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
         
         for (let i = 0; i < product.length; i++) {
             // 주문 정보에서의 주문한 상품들 데이터 삽입
-            let query2 = 'INSERT INTO products (product_id, count) VALUES (?, ?)';
+            let query2 = 'INSERT INTO products (product_id, count, delivery_day, delivery_cycle) VALUES (?, ?)';
             let result2 = await connection.query(query2, [product[i].product_id, product[i].count]);
             console.log(result2);
 
@@ -108,7 +108,7 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
             console.log('카드사 요청에 실패');
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.APPROVAL_FAIL));
         }
-        
+
         await connection.commit();
         console.log('카드 등록 이후에 결제하기(card-payment.js) 라우팅 전체 코드 실행 완료!');
     }

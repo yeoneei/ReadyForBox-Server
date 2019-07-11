@@ -46,6 +46,10 @@ post:
                     type: string
                   count:
                     type: integer
+                  delivery_day:
+                    type: integer
+                  delivery_cycle:
+                    type: integer
             amount:
               type: integer
               description: 상품 총 가격
@@ -69,7 +73,8 @@ post:
             delivery_memo: '현관문 앞'
             phone: '01051984332'
             receiver: '고성진'
-            product: [{product_id: '02398402934a20942', count: 2}, {product_id: '209234234aa209348', count: 3}]
+            product: [{product_id: '02398402934a20942', count: 2, delivery_day: 25, delivery_cycle: 2}, 
+              {product_id: '209234234aa209348', count: 3, delivery_day: 24, delivery_cycle: 3}]
             amount: 25000
             product1_name: '제주삼다수, 500ml, 40개입'
   responses:
