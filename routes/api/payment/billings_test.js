@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         console.log('req의 바디값 : ', req.body)
 
         var connection = await pool.getConnection();
-        let query = 'UPDATE user SET customer_uid = ? WHERE user_id = ?';
+        let query = 'UPDATE users SET customer_uid = ? WHERE user_id = ?';
         let result = await connection.query(query, [customer_uid, user_id]);
         console.log('리절트(result) 값 : ', result);
 
