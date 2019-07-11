@@ -40,8 +40,8 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
         
         for (let i = 0; i < product.length; i++) {
             // 주문 정보에서의 주문한 상품들 데이터 삽입
-            let query2 = 'INSERT INTO products (product_id, count, delivery_day, delivery_cycle) VALUES (?, ?)';
-            let result2 = await connection.query(query2, [product[i].product_id, product[i].count]);
+            let query2 = 'INSERT INTO products (product_id, count, delivery_day, delivery_cycle) VALUES (?, ?, ?, ?)';
+            let result2 = await connection.query(query2, [product[i].product_id, product[i].count, product[i].delivery_day, product[i].delivery_cycle]);
             console.log(result2);
 
             // 주문 정보 데이터와 주문 상품들을 이어주는 M:N 관계를 이어주기
