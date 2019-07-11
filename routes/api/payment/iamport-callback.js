@@ -80,7 +80,7 @@ router.post('/schedule', async (req, res) => {
                     customer_uid,
                     schedules: [
                         {
-                            merchant_uid: new_merchant_uid
+                            merchant_uid: new_merchant_uid,
                             schedule_at: new Date().getTime()/1000 + 120,
                             amount: 200,
                             name: '정기 결제 스케쥴링 아이템',
