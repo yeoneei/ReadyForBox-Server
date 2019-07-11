@@ -7,7 +7,6 @@
 </head>
 <body>
     <script>
-    
     window.onload = function() {
         requestPay();
     }
@@ -46,7 +45,7 @@
               // jQuery로 HTTP 요청 -> user_id, customer_uid를 DB에 저장하기 위해 POST로 요청
                 jQuery.ajax({
                 // url: "http://localhost:3000/api/payment/billings", // 서비스 웹서버
-                url: "http://13.209.206.99:3000/api/payment/billings_test", // EC2 인스턴스 주소
+                url: "http://13.209.206.99:3000/api/payment/card-enrollment", // EC2 인스턴스 주소
                 method: "POST",
                 // headers: { "Content-Type": "application/json" },
                 data: {

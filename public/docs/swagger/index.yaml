@@ -21,6 +21,8 @@ tags:
     description: 로그인 및 회원가입 관련
   - name: 마이페이지
     description: 마이페이지 관련
+  - name: 결제
+    description: 결제 관련
 
 # 각 URI에 대한 정보를 기재
 paths:
@@ -62,3 +64,8 @@ paths:
     $ref: './paths/mypage/regular-delivery/change/delivery-day.yaml'
   /mypage/regular-delivery/change/cancel:
     $ref: './paths/mypage/regular-delivery/change/cancel.yaml'
+
+  /payment/card-enrollment:
+    $ref: './paths/payment/card-enrollment.yaml'
+  /payment/card:
+    $ref: './paths/payment/card'

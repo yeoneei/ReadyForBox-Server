@@ -1,0 +1,45 @@
+get:
+  tags:
+    - 결제 관련
+  summary: 등록한 카드 정보 조회
+  parameters:
+    - in: header
+      name: token
+      required: true
+      schema: 
+        type: string
+      description: 로그인 토큰
+  responses:
+    '200':
+      description: 데이터 조회 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: 데이터 조회 성공
+              data:
+                type: object
+                example: { 
+                  "card_code": '366',
+                  "card_name": '신한카드',
+                  "card_number": '510737*********4',
+                  "customer_addr": null,
+                  "customer_email": null,
+                  "customer_name": null,
+                  "customer_postcode": null,
+                  "customer_tel": null,
+                  "customer_uid": 'cd_1562832084980',
+                  "inserted": 1562832074,
+                  "updated": 1562832074 
+                }
+    '500 ':
+      $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'
