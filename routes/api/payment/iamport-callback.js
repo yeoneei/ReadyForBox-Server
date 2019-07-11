@@ -12,12 +12,11 @@ const axios = require('axios');
 router.post('/schedule', async (req, res) => {
     try {
         console.log('웹훅 콜백 라우팅 코드 시작!!!');
-        console.log('req다아아아아아아아아', req);
 
         var connection = await pool.getConnection();
         const { imp_uid, merchant_uid } = req.body;
-        console.log('imp_유아이디 : ', imp_uid);
-        console.log('merchant_유아이디 : ', merchant_uid);
+        // console.log('imp_유아이디 : ', imp_uid);
+        // console.log('merchant_유아이디 : ', merchant_uid);
 
         // 액세스 토큰(access token) 발급 받기
         const getToken = await axios({
@@ -47,19 +46,26 @@ router.post('/schedule', async (req, res) => {
 
 
         if (status === "paid") {
-            // DB에 결제 정보 저장
-            // let query = "INSERT INTO "
-            // let result = await connection.query(query, [subscribe, user_id]);
-            // console.log("merchant_uid : ", merchant_uid);
-            // console.log(paymentData); // 결제 정보
+            // merchant_uid(=order_id)를 이용해 customer_uid 조회하기
+            let query = 'SELECT user_id FROM orders WHERE order_id = ?';
+            let result = await connection.query(query, [merchant_uid]);
+
+            let { user_id } = result[0];
+            console.log('user_id : ', user_id);
             
+            let query2 = 'SELECT customer_uid FROM users WHERE user_id = ?';
+            let result2 = await connection.query(query2, [user_id]);
+            let { customer_uid } = result2[0];
+
+
+
             // 다음 달 결제 예약하는 알고리즘
             const schedule_data = await axios({
                 url: `https://api.iamport.kr/subscribe/payments/schedule`,
                 method: "post",
                 headers: { "Authorization": access_token }, // 인증 토큰 Authorization header에 추가
                 data: {
-                    customer_uid: "ababababab",
+                    customer_uid,
                     schedules: [
                         {
                             merchant_uid: 'md_' + new Date().getTime(),
@@ -71,6 +77,7 @@ router.post('/schedule', async (req, res) => {
                 }
             });
             console.log('schedule_data.data : ', schedule_data.data);
+            console.log('다음달 결제 예약 완료 -> 4분 뒤에 결제 예약 될 것임');
         } else {
             res.send('재결제 시도해야 함!')
         }

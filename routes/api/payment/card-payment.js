@@ -20,8 +20,12 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
             phone, receiver, product, customer_uid, amount, product1_name } = req.body;
         
         const { user_id } = req.decoded;
-        delivery_address_detail = "";
-        delivery_memo = "";
+        if (!delivery_address_detail) {
+            delivery_address_detail = "";
+        }
+        if (!delivery_memo) {
+            delivery_memo = "";
+        }
         
         // 주문 정보 데이터 삽입
         let query = 'INSERT INTO orders '
@@ -80,7 +84,7 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
                 amount, 
                 name: order_name,
                 // notice_url: process.env.IAMPORT_CALLBACK_SCHEDULE_NOTICE_URL
-                // notice_url: 'http://13.209.206.99:3000/api/payment/iamport-callback/schedule'
+                notice_url: 'http://13.209.206.99:3000/api/payment/iamport-callback/schedule'
             }
         });
         
@@ -104,31 +108,7 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
             console.log('카드사 요청에 실패');
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.APPROVAL_FAIL));
         }
-
-        // // 결제 예약
-        // axios({
-        //     url: `https://api.iamport.kr/subscribe/payments/schedule`,
-        //     method: "post",
-        //     headers: { "Authorization": access_token }, // 인증 토큰 Authorization header에 추가
-        //     data: {
-        //     customer_uid: "gildong_0001_1234", // 카드(빌링키)와 1:1로 대응하는 값
-        //     schedules: [
-        //         {
-        //         merchant_uid: 'md_' + new Date().getTime(), // 주문 번호
-        //         schedule_at: new Date().getTime()/1000 + 300, // 결제 시도 시각 in Unix Time Stamp. ex. 다음 달 1일
-        //         amount: 200,
-        //         name: "월간 이용권 정기결제",
-        //         buyer_name: "홍길동",
-        //         buyer_tel: "01012345678",
-        //         buyer_email: "gildong@gmail.com"
-        //         }
-        //     ]
-        //     }
-        // });
-
-
-
-
+        
         await connection.commit();
         console.log('카드 등록 이후에 결제하기(card-payment.js) 라우팅 전체 코드 실행 완료!');
     }
