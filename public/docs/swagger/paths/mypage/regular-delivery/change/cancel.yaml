@@ -17,9 +17,13 @@ put:
           properties:
             order_id:
               type: string
-              description: 주문 id            
+              description: 주문 id
+            product_id:
+              type: string
+              description: 상품 id
           require:
             - order_id
+            - product_id
           example:
             order_id: '2349872349a298342'
   responses:

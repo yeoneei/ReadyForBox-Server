@@ -18,11 +18,15 @@ put:
             order_id:
               type: stinrg
               description: 주문 id
+            product_id:
+              type: string
+              description: 상품 id
             delivery_day:
               type: integer
               description: 배송 날짜
           require:
             - order_id
+            - product_id
             - delivery_day
           example:
             order_id: '12394721934a123978234'
