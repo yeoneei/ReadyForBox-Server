@@ -14,7 +14,7 @@ router.post('/schedule', async (req, res) => {
         console.log('웹훅 콜백 라우팅 코드 시작!!!');
 
         var connection = await pool.getConnection();
-        const { imp_uid, merchant_uid } = req.body;
+        var { imp_uid, merchant_uid } = req.body;
         console.log('imp_유아이디 : ', imp_uid);
         console.log('merchant_유아이디 : ', merchant_uid);
 
