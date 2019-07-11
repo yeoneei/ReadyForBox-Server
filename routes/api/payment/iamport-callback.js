@@ -14,7 +14,7 @@ router.post('/schedule', async (req, res) => {
         console.log('웹훅 콜백 라우팅 코드 시작!!!');
 
         var connection = await pool.getConnection();
-        var { imp_uid, merchant_uid } = req.body;
+        let { imp_uid, merchant_uid } = req.body;
         console.log('imp_유아이디 : ', imp_uid);
         console.log('merchant_유아이디 : ', merchant_uid);
 
@@ -50,7 +50,7 @@ router.post('/schedule', async (req, res) => {
             let query = 'SELECT user_id, delivery_address1, delivery_address2, delivery_address_detail '
                 + 'delivery_memo, phone, receiver '
                 + 'FROM orders WHERE order_id = ?';
-            let result = await connection.query(query, [merchant_uid]);
+            let result = await connection.query(query, [paymentData.merchant_uid]);
 
             let { user_id, delivery_address1, delivery_address2, delivery_address_detail,
                 delivery_memo, phone, receiver } = result[0];
@@ -60,7 +60,7 @@ router.post('/schedule', async (req, res) => {
             let result2 = await connection.query(query2, [user_id]);
             let { customer_uid } = result2[0];
 
-            let merchant_uid = 'md_' + new Date().getTime();
+            let new_merchant_uid = 'md_' + new Date().getTime();
             
             // 새로운 주문에 대한 정보 삽입
             let query3 = 'INSERT INTO orders '
@@ -80,7 +80,7 @@ router.post('/schedule', async (req, res) => {
                     customer_uid,
                     schedules: [
                         {
-                            merchant_uid,
+                            merchant_uid: new_merchant_uid
                             schedule_at: new Date().getTime()/1000 + 120,
                             amount: 200,
                             name: '정기 결제 스케쥴링 아이템',
