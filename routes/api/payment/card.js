@@ -38,6 +38,12 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {  // jwt를 이용
           headers: { "Authorization": access_token } // 인증 토큰 Authorization header에 추가
         });
         const cardData = getCardData.data.response; // 조회한 결제 정보
+        
+        const data = {
+            customer_uid,
+            card: cardData,
+            
+        }
         res.status(200).json(utils.successTrue(statusCode.OK, responseMessage.READ_SUCCESS, cardData));
     }
     catch (err) {
