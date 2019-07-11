@@ -75,7 +75,7 @@ router.post('/schedule', async (req, res) => {
             + '(order_id, delivery_address1, delivery_address2, delivery_address_detail, delivery_memo, '
             + 'phone, receiver, user_id) '
             + 'VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-            let result3 = await connection.query(query3, [merchant_uid, delivery_address1, delivery_address2, delivery_address_detail,
+            let result3 = await connection.query(query3, [new_merchant_uid, delivery_address1, delivery_address2, delivery_address_detail,
             delivery_memo, phone, receiver, user_id]);
 
 
