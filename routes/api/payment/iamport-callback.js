@@ -15,8 +15,8 @@ router.post('/schedule', async (req, res) => {
 
         var connection = await pool.getConnection();
         const { imp_uid, merchant_uid } = req.body;
-        // console.log('imp_유아이디 : ', imp_uid);
-        // console.log('merchant_유아이디 : ', merchant_uid);
+        console.log('imp_유아이디 : ', imp_uid);
+        console.log('merchant_유아이디 : ', merchant_uid);
 
         // 액세스 토큰(access token) 발급 받기
         const getToken = await axios({
@@ -47,16 +47,28 @@ router.post('/schedule', async (req, res) => {
 
         if (status === "paid") {
             // merchant_uid(=order_id)를 이용해 customer_uid 조회하기
-            let query = 'SELECT user_id FROM orders WHERE order_id = ?';
+            let query = 'SELECT user_id, delivery_address1, delivery_address2, delivery_address_detail '
+                + 'delivery_memo, phone, receiver '
+                + 'FROM orders WHERE order_id = ?';
             let result = await connection.query(query, [merchant_uid]);
 
-            let { user_id } = result[0];
+            let { user_id, delivery_address1, delivery_address2, delivery_address_detail,
+                delivery_memo, phone, receiver } = result[0];
             console.log('user_id : ', user_id);
             
             let query2 = 'SELECT customer_uid FROM users WHERE user_id = ?';
             let result2 = await connection.query(query2, [user_id]);
             let { customer_uid } = result2[0];
 
+            let merchant_uid = 'md_' + new Date().getTime();
+            
+            // 새로운 주문에 대한 정보 삽입
+            let query3 = 'INSERT INTO orders '
+            + '(order_id, delivery_address1, delivery_address2, delivery_address_detail, delivery_memo, '
+            + 'phone, receiver, user_id) '
+            + 'VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+            let result3 = await connection.query(query3, [merchant_uid, delivery_address1, delivery_address2, delivery_address_detail,
+            delivery_memo, phone, receiver, user_id]);
 
 
             // 다음 달 결제 예약하는 알고리즘
@@ -68,8 +80,8 @@ router.post('/schedule', async (req, res) => {
                     customer_uid,
                     schedules: [
                         {
-                            merchant_uid: 'md_' + new Date().getTime(),
-                            schedule_at: new Date().getTime()/1000 + 240,
+                            merchant_uid,
+                            schedule_at: new Date().getTime()/1000 + 120,
                             amount: 200,
                             name: '정기 결제 스케쥴링 아이템',
                         }
