@@ -9,7 +9,6 @@
     <script>
     
     window.onload = function() {
-        window.alert(<%= user %>);
         requestPay();
     }
         function requestPay() {
@@ -52,7 +51,7 @@
                 // headers: { "Content-Type": "application/json" },
                 data: {
                     customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
-                    user_id
+                    user_id: "<%= user.user_id %>"
                 }
             });
             window.alert('리다이렉트 실행한다아아아아아아아아아아');
