@@ -13,8 +13,6 @@ get:
         
         (ex. 청소, 요리, 수면, 인테리어, 옷관리)
 
-        (주의. 띄어쓰기 하지 말 것)
-
     - in: query
       name: second
       required: true
@@ -25,7 +23,6 @@ get:
         
         (ex. 청소, 요리, 수면, 인테리어, 옷관리)
 
-        (주의. 띄어쓰기 하지 말 것)
     - in: query
       name: fifth
       required: true
@@ -34,9 +31,8 @@ get:
       description: |
         5순위로 지정한 값
         
-        (ex. 청소, 요리, 수면, 인테리어, 옷관리)
+        (ex. 청소, 요리, 수면, 인테리어, 옷 관리)
 
-        (주의. 띄어쓰기 하지 말 것)
     - in: query
       name: minprice
       required: true

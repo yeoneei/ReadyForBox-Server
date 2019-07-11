@@ -11,11 +11,17 @@ const Package = require('../../../schemas/package');
 
 router.get('/', async (req, res) => {
     try {
-        const { first, second, fifth, minprice, maxprice } = req.query;
+        let { first, second, fifth, minprice, maxprice } = req.query;
 
         if (!first || !second || !fifth || !minprice || !maxprice) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         } else {
+            // first, second, fifth로 들어온 값에 있는 띄어쓰기 다 붙여주기
+            first = first.replace(/\s/gi, "");
+            second = second.replace(/\s/gi, "");
+            fifth = fifth.replace(/\s/gi, "");
+
+
             var package = await Package.find({
                 $or: [{ category: first }, { category: second }],
                 saled_price: { $gte: parseInt(minprice), $lte: parseInt(maxprice) },
