@@ -97,7 +97,7 @@ router.post('/schedule', async (req, res) => {
                 }
             });
             console.log('schedule_data.data : ', schedule_data.data);
-            console.log('다음달 결제 예약 완료 -> 4분 뒤에 결제 예약 될 것임');
+            console.log('다음달 결제 예약 완료 -> 2분 뒤에 결제 예약 될 것임');
         } else {
             res.send('재결제 시도해야 함!')
         }

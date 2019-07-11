@@ -18,14 +18,19 @@ put:
             order_id:
               type: string
               description: 주문 id
+            product_id:
+              type: string
+              description: 상품 id
             delivery_cycle:
               type: integer
               description: 배송주기
           require:
             - order_id
+            - product_id
             - delivery_cycle
           example:
             order_id: '1239851235a1235987235'
+            product_id: '23948a0s9df2009sadfasdf'
             delivery_cycle: 1
   responses:
     '200':
