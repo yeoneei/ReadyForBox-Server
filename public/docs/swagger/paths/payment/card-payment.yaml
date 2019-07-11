@@ -15,6 +15,9 @@ post:
         schema:
           type: object
           properties:
+            customer_uid:
+              type: string
+              description: customer_uid (고객 고유 번호 -> 빌링키 1:1 대응)
             delivery_address1:
               type: string
               description: 배송 주소 1
@@ -45,6 +48,7 @@ post:
                     type: integer
               
           require:
+            - customer_uid
             - delivery_address1
             - delivery_address2
             - phone
