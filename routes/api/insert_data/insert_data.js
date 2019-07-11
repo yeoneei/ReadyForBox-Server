@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var Product = require('../../schemas/product');
-var Package = require('../../schemas/package');
+var Product = require('../../../schemas/product');
+var Package = require('../../../schemas/package');
 
 
 // 정기 배송 상품인 상품 데이터 넣기
