@@ -85,7 +85,7 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
                 amount, 
                 name: order_name,
                 // notice_url: process.env.IAMPORT_CALLBACK_SCHEDULE_NOTICE_URL
-                notice_url: 'http://13.209.206.99:3000/api/payment/iamport-callback/schedule'
+                // notice_url: 'http://13.209.206.99:3000/api/payment/iamport-callback/schedule'
             }
         });
         
