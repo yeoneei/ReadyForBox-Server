@@ -89,6 +89,7 @@ router.get('/', async (req, res) => {
                 regularity: regular_data,
                 regular_not_Important: notImportant_data
             }
+            console.log(utils.successTrue(statusCode.OK, responseMessage.READ_SUCCESS, data));
             res.status(200).json(utils.successTrue(statusCode.OK, responseMessage.READ_SUCCESS, data));
         }
     }
