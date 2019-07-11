@@ -43,10 +43,11 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
             let query2 = 'INSERT INTO products (product_id, count, delivery_day, delivery_cycle) VALUES (?, ?, ?, ?)';
             let result2 = await connection.query(query2, [product[i].product_id, product[i].count, product[i].delivery_day, product[i].delivery_cycle]);
             console.log(result2);
+            let id = result2.insertId;
 
             // 주문 정보 데이터와 주문 상품들을 이어주는 M:N 관계를 이어주기
-            let query3 = 'INSERT INTO orders_products (order_id, product_id) VALUES (?, ?)';
-            let result3 = await connection.query(query3, [merchant_uid, product[i].product_id]);
+            let query3 = 'INSERT INTO orders_products (order_id, id) VALUES (?, ?)';
+            let result3 = await connection.query(query3, [merchant_uid, id]);
             console.log(result3);
         };
 
