@@ -3,12 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const helmet = require('helmet');
 require('dotenv').config();
 var mongoose = require('./schemas');
 
 var indexRouter = require('./routes/api/index');
 
 var app = express();
+
+//helmet 적용
+app.use(helmet());
 
 // mongoose 연결
 mongoose();

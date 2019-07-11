@@ -11,17 +11,18 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
     try {
         var connection = await pool.getConnection();
         const { user_id } = req.decoded;
-        const { order_id, delivery_day } = req.body;
+        const { order_id, product_id, delivery_day } = req.body;
 
         if (!order_id || !delivery_day || !user_id) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else if (delivery_day < 1 || delivery_day > 31) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.WRONG_DAY));
         } else {
-            let query = "UPDATE regular_deliveries LEFT JOIN orders "
-                + "ON regular_deliveries.order_id = orders.order_id SET delivery_day = ? "
-                + "WHERE orders.order_id = ? AND user_id = ?";
-            let result = await connection.query(query, [delivery_day, order_id, user_id]);
+            let query = "UPDATE products LEFT JOIN orders_products "
+                + "ON products.id = orders_products.id LEFT JOIN orders "
+                + "ON orders_products.order_id = orders.order_id SET delivery_day = ? "
+                + "WHERE products.product_id = ? AND orders.order_id = ? AND user_id = ?";
+            let result = await connection.query(query, [delivery_day, product_id, order_id, user_id]);
             if (result.affectedRows === 1) {
                 res.status(200).json(utils.successTrue(statusCode.NO_CONTENT, resMessage.UPDATE_SUCCESS));
             } else {

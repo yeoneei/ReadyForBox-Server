@@ -11,15 +11,16 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
     try {
         var connection = await pool.getConnection();
         const { user_id } = req.decoded;
-        const { order_id, delivery_cycle } = req.body;
+        const { order_id, product_id, delivery_cycle } = req.body;
 
         if (!order_id || !delivery_cycle || !user_id) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
-            let query = "UPDATE regular_deliveries LEFT JOIN orders "
-                + "ON regular_deliveries.order_id = orders.order_id SET delivery_cycle = ? "
-                + "WHERE orders.order_id = ? AND user_id = ?";
-            let result = await connection.query(query, [delivery_cycle, order_id, user_id]);
+            let query = "UPDATE products LEFT JOIN orders_products "
+                + "ON products.id = orders_products.id LEFT JOIN orders "
+                + "ON orders_products.order_id = orders.order_id SET delivery_cycle = ? "
+                + "WHERE products.product_id = ? AND orders.order_id = ? AND user_id = ?";
+            let result = await connection.query(query, [delivery_cycle, product_id, order_id, user_id]);
             if (result.affectedRows === 1) {
                 res.status(200).json(utils.successTrue(statusCode.OK, resMessage.UPDATE_SUCCESS));
             } else {
