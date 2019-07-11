@@ -8,5 +8,6 @@ router.use('/', require('./payment'));
 // 테스트용
 router.use('/card-enrollment', require('./card-enrollment'));
 router.use('/card', require('./card'));
+router.use('/card-payment', require('./card-payment'));
 
 module.exports = router;

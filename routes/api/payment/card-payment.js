@@ -12,34 +12,39 @@ const jwt = require('../../../module/jwt');
 router.post('/', jwt.isLoggedIn, async (req, res) => {
     try {
         var connection = await pool.getConnection();
+        await connection.beginTransaction();
         
         // 주문번호(order_id) 생성
         const merchant_uid = 'md_' + new Date().getTime(); // (= order_id)
         let { delivery_address1, delivery_address2, delivery_address_detail, delivery_memo, 
-        phone, receiver, product } = req.body;
-        const { customer_uid } = req.body;
+            phone, receiver, product, customer_uid, amount, product1_name } = req.body;
+        
         const { user_id } = req.decoded;
         delivery_address_detail = "";
         delivery_memo = "";
         
+        // 주문 정보 데이터 삽입
         let query = 'INSERT INTO orders '
             + '(order_id, delivery_address1, delivery_address2, delivery_address_detail, delivery_memo, '
             + 'phone, receiver, user_id) '
             + 'VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
         let result = await connection.query(query, [merchant_uid, delivery_address1, delivery_address2, delivery_address_detail,
             delivery_memo, phone, receiver, user_id]);
-        console.log(result1);
+        console.log(result);
+
+        
         
         for (let i = 0; i < product.length; i++) {
+            // 주문 정보에서의 주문한 상품들 데이터 삽입
             let query2 = 'INSERT INTO products (product_id, count) VALUES (?, ?)';
             let result2 = await connection.query(query2, [product[i].product_id, product[i].count]);
             console.log(result2);
 
+            // 주문 정보 데이터와 주문 상품들을 이어주는 M:N 관계를 이어주기
             let query3 = 'INSERT INTO orders_products (order_id, product_id) VALUES (?, ?)';
-            let result3 = await connection.query(query3, [merchant_id, product[i].product_id]);
+            let result3 = await connection.query(query3, [merchant_uid, product[i].product_id]);
             console.log(result3);
         };
-
 
         /////////////// 결제 요청을 위한 인증 토큰 발급 받기
         const getToken = await axios({
@@ -54,8 +59,13 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
 
         const { access_token } = getToken.data.response; // 인증 토큰
 
-
-        // 상품 정보
+        
+        let order_name;
+        if (product.length == 1) {
+            order_name = product1_name;
+        } else if (product.length > 1) {
+            order_name = product1_name + ' 외 ' + (product.length - 1) + '개';
+        }
         
         
         ////////////// 결제(재결제) 요청
@@ -66,11 +76,11 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
             // 요청하고자 하는 결제 정보
             data: {
                 customer_uid, 
-                merchant_uid: 'md_' + new Date().getTime(), // 새로 생성한 결제(재결제)용 주문 번호
-                amount: order_amount, 
-                name: order_name, 
+                merchant_uid, // 새로 생성한 결제(재결제)용 주문 번호
+                amount, 
+                name: order_name,
                 // notice_url: process.env.IAMPORT_CALLBACK_SCHEDULE_NOTICE_URL
-                notice_url: 'http://13.209.206.99:3000/api/payment/iamport-callback/schedule'
+                // notice_url: 'http://13.209.206.99:3000/api/payment/iamport-callback/schedule'
             }
         });
         
@@ -78,49 +88,52 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
         
 
         /////////////// 카드 정상 승인
-        // console.log('paymentResult.data', paymentResult.data);
         const { code, message } = paymentResult.data;
-        
         if (code === 0) { // 카드사 통신에 성공(실제 승인 성공 여부는 추가 판단이 필요합니다.)
             const { status } = paymentResult.data.response;
             console.log('status : ', status);
             if ( status === "paid" ) { // 카드 정상 승인
                 console.log('카드 정상 승인');
-                // res.status(200).send('성공');
+                res.status(200).json(utils.successTrue(statusCode.OK, responseMessage.APPROVAL_SUCCESS));
             } else { // 카드 승인 실패 (ex. 고객 카드 한도초과, 거래정지카드, 잔액부족 등)
               //paymentResult.status : failed 로 수신됩니다.
                 console.log('카드 승인 실패');
-                // res.status(200).send('실패');
+                res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.APPROVAL_FAIL));
             }
-            // res.send({ });
         } else { // 카드사 요청에 실패 (paymentResult is null)
             console.log('카드사 요청에 실패');
-            // res.status(200).send('실패');
+            res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.APPROVAL_FAIL));
         }
 
-        // 결제 예약
-        axios({
-            url: `https://api.iamport.kr/subscribe/payments/schedule`,
-            method: "post",
-            headers: { "Authorization": access_token }, // 인증 토큰 Authorization header에 추가
-            data: {
-            customer_uid: "gildong_0001_1234", // 카드(빌링키)와 1:1로 대응하는 값
-            schedules: [
-                {
-                merchant_uid: 'md_' + new Date().getTime(), // 주문 번호
-                schedule_at: new Date().getTime()/1000 + 300, // 결제 시도 시각 in Unix Time Stamp. ex. 다음 달 1일
-                amount: 200,
-                name: "월간 이용권 정기결제",
-                buyer_name: "홍길동",
-                buyer_tel: "01012345678",
-                buyer_email: "gildong@gmail.com"
-                }
-            ]
-            }
-        });
-        console.log('빌링(billings.js) 라우팅 전체 코드 실행 완료!');
+        // // 결제 예약
+        // axios({
+        //     url: `https://api.iamport.kr/subscribe/payments/schedule`,
+        //     method: "post",
+        //     headers: { "Authorization": access_token }, // 인증 토큰 Authorization header에 추가
+        //     data: {
+        //     customer_uid: "gildong_0001_1234", // 카드(빌링키)와 1:1로 대응하는 값
+        //     schedules: [
+        //         {
+        //         merchant_uid: 'md_' + new Date().getTime(), // 주문 번호
+        //         schedule_at: new Date().getTime()/1000 + 300, // 결제 시도 시각 in Unix Time Stamp. ex. 다음 달 1일
+        //         amount: 200,
+        //         name: "월간 이용권 정기결제",
+        //         buyer_name: "홍길동",
+        //         buyer_tel: "01012345678",
+        //         buyer_email: "gildong@gmail.com"
+        //         }
+        //     ]
+        //     }
+        // });
+
+
+
+
+        await connection.commit();
+        console.log('카드 등록 이후에 결제하기(card-payment.js) 라우팅 전체 코드 실행 완료!');
     }
     catch (err) {
+        connection.rollback();
         console.log(err);
         res.status(200).json(utils.successFalse(statusCode.INTERNAL_SERVER_ERROR, responseMessage.INTERNAL_SERVER_ERROR));
     } finally {
