@@ -45,6 +45,7 @@ router.post('/', async (req, res) => {
                 notice_url: 'http://13.209.206.99:3000/api/payment/iamport-callback/schedule'
             }
         });
+        
         // console.log('paymentResult', paymentResult);
         
 

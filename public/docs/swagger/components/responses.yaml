@@ -14,6 +14,22 @@
           message:
             type: string
             example: '데이터 삭제 성공'
+200-APPROVAL_SUCCESS:
+  description: 주문에 대한 카드 결제가 정상적으로 완료되었습니다.
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          status:
+            type: integer
+            example: 200
+          success:
+            type: boolean
+            example: true
+          message:
+            type: string
+            example: '주문에 대한 카드 결제가 정상적으로 완료되었습니다.'
 201-SAVE_SUCCESS:
   description: 데이터 저장 성공
   content:
@@ -174,6 +190,22 @@
           message:
             type: string
             example: 이미 정기 배송이 취소 되어있습니다.
+400-APPROVAL_FAIL:
+  description: 주문에 대한 카드 결제가 실패하였습니다
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          status:
+            type: integer
+            example: 400
+          success:
+            type: boolean
+            example: false
+          message:
+            type: string
+            example: 주문에 대한 카드 결제가 실패하였습니다
 
 
 

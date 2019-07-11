@@ -1,0 +1,81 @@
+post:
+  tags:
+    - 결제
+  summary: (카드 등록한 이후에) 결제 하기
+  parameters:
+    - in: header
+      name: token
+      schema:
+        type: string
+      required: true
+  requestBody:
+    require: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_uid:
+              type: string
+              description: customer_uid (고객 고유 번호 -> 빌링키 1:1 대응)
+            delivery_address1:
+              type: string
+              description: 배송 주소 1
+            delivery_address2:
+              type: string
+              description: 배송 주소 2
+            delivery_address_detail:
+              type: string
+              description: 배송 상세 주소
+            delivery_memo:
+              type: string
+              description: 배송 메시지
+            phone:
+              type: string
+              description: 휴대폰 번호
+            receiver:
+              type: string
+              description: 수령인
+            product:
+              type: array
+              description: 상품 정보
+              items:
+                type: object
+                properties:
+                  product_id:
+                    type: string
+                  count:
+                    type: integer
+            amount:
+              type: integer
+              description: 상품 총 가격
+            product1_name: 
+              type: string
+              description: 첫 번째 상품의 상품 이름
+          require:
+            - customer_uid
+            - delivery_address1
+            - delivery_address2
+            - phone
+            - receiver
+            - product
+            - amount
+            - product1_name
+          example:
+            customer_uid: 'cd_209234092347234'
+            delivery_address1: '인천광역시 남구'
+            delivery_address2: '용현동 66-29'
+            delivery_detail: '패밀리고시원 202호'
+            delivery_memo: '현관문 앞'
+            phone: '01051984332'
+            receiver: '고성진'
+            product: [{product_id: '02398402934a20942', count: 2}, {product_id: '209234234aa209348', count: 3}]
+            amount: 25000
+            product1_name: '제주삼다수, 500ml, 40개입'
+  responses:
+    '200':
+      $ref: '../../components/responses.yaml#200-APPROVAL_SUCCESS'
+    '400':
+      $ref: '../../components/responses.yaml#400-APPROVAL_FAIL'
+    '500':
+      $ref: '../../components/responses.yaml#500-INTERNAL_SERVER_ERROR'

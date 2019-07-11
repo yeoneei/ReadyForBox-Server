@@ -1,11 +1,10 @@
 get:
   tags:
     - 상품
-  summary: 정기 배송 상품 리스트 조회
+  summary: 정기 배송 상품 리스트 조회 / 검색 기능
   parameters:
     - in: query
       name: category
-      required: true
       schema:
         type: string
       description: | 
@@ -19,13 +18,14 @@ get:
     - in: query
       name: search
       schema: 
-        type: integer
+        type: string
       description: |
         검색어
 
         (단, category 파라미터와 search 파라미터 둘 중 하나의 파라미터에만 값을 넣어야 합니다.)
     - in: query
       name: flag
+      required: true
       schema: 
         type: integer
       description: |
