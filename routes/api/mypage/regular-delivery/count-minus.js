@@ -18,7 +18,7 @@ router.put('/', jwt.isLoggedIn, async (req, res) => {
         } else {
             let query1 = "SELECT count FROM orders "
                 + "LEFT JOIN orders_products ON orders.order_id = orders_products.order_id "
-                + "LEFT JOIN products ON orders_products.product_id = products.product_id "
+                + "LEFT JOIN products ON orders_products.id = products.id "
                 + "WHERE orders.order_id = ? AND user_id = ? AND products.product_id = ?"
             let result1 = await connection.query(query1, [order_id, user_id, product_id]);
             console.log(result1[0]);
