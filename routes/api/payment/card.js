@@ -44,7 +44,7 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {  // jwt를 이용
             card: cardData,
             
         }
-        res.status(200).json(utils.successTrue(statusCode.OK, responseMessage.READ_SUCCESS, cardData));
+        res.status(200).json(utils.successTrue(statusCode.OK, responseMessage.READ_SUCCESS, data));
     }
     catch (err) {
         console.log(err);
