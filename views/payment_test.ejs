@@ -1,3 +1,4 @@
+<%# 카드 등록하는 페이지!!!!!! %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,13 +6,15 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
-    <!--<button onclick="requestPay()">결제하기</button>-->
     <script>
+    
     window.onload = function() {
+        window.alert(user);
         requestPay();
     }
         function requestPay() {
-        var customer_uid = 'testtest';
+        // var customer_uid = 'testtest' // 테스트용
+        var customer_uid = 'cd_' + new Date().getTime();
         // var IMP = winodw.IMP;
         IMP.init('imp76948192');
 
@@ -40,18 +43,18 @@
                 window.alert(JSON.stringify(rsp));
               // 빌링키 발급 성공
                 window.alert('빌링키 발급 성공');
-            //   // jQuery로 HTTP 요청
-            //     jQuery.ajax({
-            //     // url: "http://localhost:3000/api/payment/billings", // 서비스 웹서버
-            //     url: "http://13.209.206.99:3000/api/payment/billings_test", // EC2 인스턴스 주소
-            //     method: "POST",
-            //     // headers: { "Content-Type": "application/json" },
-            //     data: {
-            //         customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
-            //         order_amount: <%= order.amount %>,
-            //         order_name: "<%= order.name %>",
-            //     }
-            // });
+
+              // jQuery로 HTTP 요청 -> user_id, customer_uid를 DB에 저장하기 위해 POST로 요청
+                jQuery.ajax({
+                // url: "http://localhost:3000/api/payment/billings", // 서비스 웹서버
+                url: "http://13.209.206.99:3000/api/payment/billings_test", // EC2 인스턴스 주소
+                method: "POST",
+                // headers: { "Content-Type": "application/json" },
+                data: {
+                    customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
+                    user_id
+                }
+            });
             window.alert('리다이렉트 실행한다아아아아아아아아아아');
             window.location.href = 'http://13.209.206.99:3000/api/test';
             window.alert('POST메서드를 이용해 /api/billings로 customer_uid 전송함');

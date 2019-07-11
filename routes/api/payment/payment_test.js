@@ -45,7 +45,6 @@ router.get('/',  async (req, res) => {
             temp_name = product1_name + ' 외 ' + (product_species_count - 1) + '개';
         }
         
-
         // const order = { 
         //     amount, 
         //     name: temp_name,

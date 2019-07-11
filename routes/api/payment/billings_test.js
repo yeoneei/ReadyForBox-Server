@@ -7,10 +7,15 @@ const utils = require('../../../module/response/utils');
 const axios = require('axios');
 const pool = require('../../../config/dbConfig');
 
-// 결제를 시도하는 라우팅
+////////// 카드를 등록하는 라우팅
 router.post('/', async (req, res) => {
     try {
+        const { customer_uid } = req.body;
+
         var connection = await pool.getConnection();
+        let query = 'INSERT INTO users (customer_uid) VALUES (?)';
+        let result = await connection.query(query, [customer_uid]);
+
         console.log('빌링(billings.js) 라우팅 시작!');
         // console.log(req.body);
         const { customer_uid, order_amount, order_name } = req.body; // req의 body에서 customer_uid 추출
