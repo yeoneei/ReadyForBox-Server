@@ -71,7 +71,7 @@ router.get('/', async (req, res) => {
                 regular_data[i] = {
                     product_id: regularity[i]._id,
                     main_img: regularity[i].main_img,
-                    name: regularity[i].name,
+                    name: regularity[i].content,
                     saled_price: regularity[i].saled_price
                 }
             }
@@ -79,7 +79,7 @@ router.get('/', async (req, res) => {
                 notImportant_data[i] = {
                     product_id: not_regularity[i]._id,
                     main_img: not_regularity[i].main_img,
-                    name: not_regularity[i].name,
+                    name: not_regularity[i].content,
                     saled_price: not_regularity[i].saled_price
                 }
             }
