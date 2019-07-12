@@ -1,32 +1,52 @@
-# ReadyForBox-Server
-* sopt 24 app-jam
+# 준비해박스
+![디자인 도안](./황보소연,박재성_hw_6/public/images/design.png)
 
 
 ## Description
-
-* 팀명 : **준비해박스**
-
+* SOPT 24기 앱잼(app-jam)
 
 * 프로젝트 설명 : 자취생을 위한 정기배송 서비스
-  * 2030 1인 가구를 위한 생필품 정기배송과 자신만의 자취방을 꾸미고 싶은 이들을 위한 패키지 서비스를 제공하는  
-  큐레이션 기반 E-커머스
+  * 2030 1인 가구를 위한 생필품 정기배송과 자신만의 자취방을 꾸미고 싶은 이들을 위한 패키지 서비스를 제공하는 큐레이션 기반 E-커머스
 
 * 프로젝트 기간 : 2019년 06월 30일 ~ 2019년 07월 12일
 
-* 어플리케이션 구성 : Mobile App, Server
+* 어플리케이션 구성 : Mobile App(Android, iOS), Server
 
 * **API** : http://13.209.206.99:3000/docs/#/
 
+## 사용한 도구
+- Github
+- DB (MariaDB, WorkBench, MongoDB, Mongoose, Compass, AWS RDS)
+- Node.js (+ Express.js)
+- AWS (EC2, RDS, S3, IAM)
+
+
+## 구현한 핵심 기능
+### 정기 결제 기능
+- 아임포트(Iamport)를 이용한 정기 결제 기능 구현
+
+### 회원가입 및 로그인 
+- JWT 이용
+
+### 상품 리스트 조회 및 세부 사항 조회
+
+### 마이페이지
 
 
 
-## DB
 
-* NoSQL
+### Node.js 
+- Node.js의 Async/Await를 적극 활용
+- 유지 및 보수가 쉽도록 라우팅 폴더 및 파일 구성
+- 상태 코드, 상태 메시지를 모듈을 통해 일관되게 발송
+- json의 형태로 클라이언트한테 데이터를 전송
 
-* MongoDB
+### 회원가입 및 로그인 
+- JWT 이용
 
-* MariaDB
+### 상품 리스트 
+###E-coo
+
 
 
 
@@ -35,28 +55,25 @@
 
 ```json
 
-"dependencies": {
-​    "aws-sdk": "^2.485.0",
-​    "axios": "^0.19.0",
-​    "cookie-parser": "~1.4.3",
-​    "crypto-promise": "^2.1.0",
-​    "csv-parser": "^2.3.0",
-​    "csvtojson": "^2.0.10",
-​    "debug": "~2.6.9",
-​    "dotenv": "^8.0.0",
-​    "ejs": "^2.6.2",
-​    "express": "~4.16.0",
-​    "helmet": "^3.18.0",
-​    "http-errors": "~1.6.2",
-​    "jade": "~1.11.0",
-​    "jsonwebtoken": "^8.5.1",
-​    "mariadb": "^2.0.5",
-​    "mongoose": "^5.6.3",
-​    "morgan": "~1.9.0",
-​    "multer": "^1.4.1",
-​    "multer-s3": "^2.9.0",
-​    "mysql": "^2.17.1",
-​    "urlencode": "^1.1.0"
+  "dependencies": {
+    "aws-sdk": "^2.485.0",
+    "axios": "^0.19.0",
+    "cookie-parser": "~1.4.3",
+    "crypto-promise": "^2.1.0",
+    "debug": "~2.6.9",
+    "dotenv": "^8.0.0",
+    "ejs": "^2.6.2",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "mariadb": "^2.0.5",
+    "mongoose": "^5.6.3",
+    "morgan": "~1.9.0",
+    "multer": "^1.4.1",
+    "multer-s3": "^2.9.0",
+    "mysql": "^2.17.1",
+    "urlencode": "^1.1.0"
   }
 
 ```
