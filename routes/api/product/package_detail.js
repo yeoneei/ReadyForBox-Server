@@ -4,7 +4,6 @@ var router = express.Router();
 const responseMessage = require('../../../module/response/responseMessage');
 const statusCode = require('../../../module/response/statusCode');
 const utils = require('../../../module/response/utils');
-//const pool = require('../../../config/dbConfig');
 
 // 몽고 DB Schema
 const Package = require('../../../schemas/package');
@@ -19,7 +18,10 @@ router.get('/', async (req, res) => {
             var package = await Package.find({
                 _id: package_id,
             }).populate('products')
+
+            console.log('패키지 : ', package);
             console.log(package[0].products.length);
+            
             var productArr = new Array();
             for (var i = 0; i < package[0].products.length; i++) {
                 var product = new Object();
@@ -43,7 +45,12 @@ router.get('/', async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.status(200).json(utils.successFalse(statusCode.INTERNAL_SERVER_ERROR, responseMessage.INTERNAL_SERVER_ERROR));
+        if (err.name == 'CastError' && err.kind == 'ObjectId') {
+            res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, responseMessage.WRONG_PARAMS));
+        } else {
+            res.status(200).json(utils.successFalse(statusCode.INTERNAL_SERVER_ERROR, responseMessage.INTERNAL_SERVER_ERROR));
+        }
+        
     }
 })
 
