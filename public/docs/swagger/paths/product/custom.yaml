@@ -65,7 +65,7 @@ get:
               data:
                 type: object
                 example: {
-                  "package": [{
+                  "packages": [{
                       "package_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                       "name": "패키지패키지패키지",
