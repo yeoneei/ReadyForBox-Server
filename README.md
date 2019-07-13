@@ -1,5 +1,5 @@
 # 준비해박스
-![디자인 도안](./public/images/service_workflow.png)
+![서비스 워크플로우](./public/images/service_workflow.jpg)
 
 
 ## Description
