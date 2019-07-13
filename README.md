@@ -1,5 +1,5 @@
 # 준비해박스
-![디자인 도안](./황보소연,박재성_hw_6/public/images/design.png)
+![디자인 도안](./public/images/service_workflow.png)
 
 
 ## Description
