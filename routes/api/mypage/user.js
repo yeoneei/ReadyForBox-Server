@@ -16,7 +16,7 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {
         if (!name || !email) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
         } else {
-            let query = "SELECT * FROM users WHERE name = ? "
+            let query = "SELECT * FROM users WHERE email = ? "
             let result = await connection.query(query, [name]);
 
             console.log('리절트값 : ', result);
