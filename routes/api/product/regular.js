@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
             if (flag == 1) {
                 var products = await Product.find(option).
                     sort({ created_at: 'desc' })
-                console.log(products);
+                // console.log(products);
 
                 // 가격 낮은 순
             } else if (flag == 3) {
