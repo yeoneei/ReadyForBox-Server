@@ -65,7 +65,7 @@ get:
               data:
                 type: object
                 example: {
-                  "package": [{
+                  "packages": [{
                       "package_id": "ab_1027492",
                       "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                       "name": "패키지패키지패키지",
@@ -84,7 +84,7 @@ get:
                       "name": "패키지패키지패키지",
                       "saled_price": 48900                      
                     }],
-                  "regular": [{
+                  "regularity": [{
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     "name": "제품명",
@@ -114,7 +114,7 @@ get:
                     "name": "제품명",
                     "saled_price": 48900
                   }],
-                  "regular_not_important": [{
+                  "regular_not_Important": [{
                     "product_id": "ab_1027492",
                     "main_img": "https://alasdlfknasfnlkafnasmdf.alzsdkfnlasndf",
                     "name": "제품명",
