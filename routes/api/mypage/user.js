@@ -11,6 +11,7 @@ router.get('/', jwt.isLoggedIn, async (req, res) => {
     try {
         var connection = await pool.getConnection();
         const { name, email } = req.decoded;
+        console.log(req.decoded);
 
         if (!name || !email) {
             res.status(200).json(utils.successFalse(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
