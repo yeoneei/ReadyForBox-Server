@@ -16,7 +16,7 @@
 
 ## 사용한 도구
 - Github
-- DB (MariaDB, WorkBench, MongoDB, Mongoose, Compass, AWS RDS)
+- DB (MariaDB, WorkBench / MongoDB, Mongoose, Compass / AWS RDS)
 - Node.js (+ Express.js)
 - AWS (EC2, RDS, S3, IAM)
 
