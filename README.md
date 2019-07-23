@@ -12,7 +12,10 @@
 
 * 어플리케이션 구성 : Mobile App(Android, iOS), Server
 
-* **API** : http://13.209.206.99:3000/docs/#/
+## API 문서
+* http://13.209.206.99:3000/docs/#/
+* ![서비스 워크플로우](./public/images/API_docs.png)
+
 
 ## 사용한 도구
 - Github
