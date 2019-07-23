@@ -13,9 +13,14 @@
 * 어플리케이션 구성 : Mobile App(Android, iOS), Server
 
 ## API 문서
-* http://13.209.206.99:3000/docs/#/
-* ![서비스 워크플로우](./public/images/API_docs.png)
+* http://13.209.206.99:3000/docs
+![API문서](./public/images/API_docs.png)
 
+## 서버 아키텍쳐
+![서버 아키텍쳐](./public/images/server_architecture.png)
+
+## DB ERD
+![DB ERD](./public/images/db_erd.png)
 
 ## 사용한 도구
 - Github
