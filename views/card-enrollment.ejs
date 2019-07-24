@@ -7,10 +7,13 @@
 </head>
 <body>
     <script>
+    // 웹페이지로 들어가자마자 결제창을 띄우는 requestPay()를 실행시켜주는 함수
     window.onload = function() {
         requestPay();
     }
-        function requestPay() {
+    
+    // 결제창과 관련된 requestPay() 함수 정의
+    function requestPay() {
         // var customer_uid = 'testtest' // 테스트용
         var customer_uid = 'cd_' + new Date().getTime();
         // var IMP = winodw.IMP;
@@ -26,7 +29,7 @@
             // 빌링키에 1:1로 대응하는 값으로써, 
             // 해당 속성에 지정한 값으로 반복 결제를 시도할 것이기 때문에 
             // 고유(unique)한 고객 번호를 지정해야 한다.
-            customer_uid,
+            customer_uid, 
             name: "최초 카드 인증",
             amount: 0,
             buyer_email: "<%= user.email %>",
@@ -39,10 +42,10 @@
         }, function (rsp) { // callback
             if (rsp.success) {
                 window.alert(JSON.stringify(rsp));
-              // 빌링키 발급 성공
+                // 빌링키 발급 성공
                 window.alert('빌링키 발급 성공');
 
-              // jQuery로 HTTP 요청 -> user_id, customer_uid를 DB에 저장하기 위해 POST로 요청
+                // jQuery로 HTTP 요청 -> user_id, customer_uid를 DB에 저장하기 위해 POST로 요청
                 jQuery.ajax({
                 // url: "http://localhost:3000/api/payment/billings", // 서비스 웹서버
                 url: "http://13.209.206.99:3000/api/payment/card-enrollment", // EC2 인스턴스 주소
@@ -56,9 +59,9 @@
             window.alert('리다이렉트 실행한다아아아아아아아아아아');
             window.location.href = 'http://13.209.206.99:3000/api/test';
             window.alert('POST메서드를 이용해 /api/billings로 customer_uid 전송함');
-            
+                
             } else {
-              // 빌링키 발급 실패
+                // 빌링키 발급 실패
                 window.alert(JSON.stringify(rsp));
             }
         });

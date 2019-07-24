@@ -51,6 +51,7 @@ router.post('/', jwt.isLoggedIn, async (req, res) => {
             console.log(result3);
         };
 
+        
         /////////////// 결제 요청을 위한 인증 토큰 발급 받기
         const getToken = await axios({
             url: "https://api.iamport.kr/users/getToken",

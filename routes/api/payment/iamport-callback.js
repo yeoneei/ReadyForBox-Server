@@ -44,7 +44,6 @@ router.post('/schedule', async (req, res) => {
         // console.log('paymentData', paymentData);
         console.log('status : ', status);
 
-
         if (status === "paid") {
             // merchant_uid(=order_id)를 이용해 customer_uid 조회하기
             let query = 'SELECT user_id, delivery_address1, delivery_address2, delivery_address_detail '
