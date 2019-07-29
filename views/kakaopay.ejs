@@ -1,4 +1,3 @@
-<%# 카드 등록하는 페이지!!!!!! %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,42 +23,30 @@
             pg: "kakaopay",
             pay_method: "card", // "card"만 지원됩니다
             merchant_uid: "issue_billing_" + new Date().getTime(), // 빌링키 발급용 주문번호
-
-            // 카드(빌링키)와 1:1로 대응하는 값 
-            // 빌링키에 1:1로 대응하는 값으로써, 
-            // 해당 속성에 지정한 값으로 반복 결제를 시도할 것이기 때문에 
-            // 고유(unique)한 고객 번호를 지정해야 한다.
-            customer_uid, 
             name: "최초 카드 인증",
-            amount: 0,
+            amount: 100,
             buyer_email: "<%= user.email %>",
             buyer_name: "<%= user.name %>",
             buyer_tel: "<%= user.phone %>",
             buyer_addr: "<%= user.address %>",
             // buyer_postcode: "01181", // 생략하자!
-            m_redirect_url : 'http://13.209.206.99:3000/api/test', // 모바일
-            app_scheme : 'iamportappttest' // 모바일
+
         }, function (rsp) { // callback
             if (rsp.success) {
                 window.alert(JSON.stringify(rsp));
-                // 빌링키 발급 성공
-                window.alert('빌링키 발급 성공');
+                window.alert('결제 성공');
 
-                // jQuery로 HTTP 요청 -> user_id, customer_uid를 DB에 저장하기 위해 POST로 요청
-                jQuery.ajax({
-                // url: "http://localhost:3000/api/payment/billings", // 서비스 웹서버
-                url: "http://13.209.206.99:3000/api/payment/card-enrollment", // EC2 인스턴스 주소
-                method: "POST",
-                // headers: { "Content-Type": "application/json" },
-                data: {
-                    customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
-                    user_id: "<%= user.user_id %>"
-                }
-            });
+                // jQuery.ajax({
+                // url: "http://13.209.206.99:3000/api/payment/card-enrollment", // EC2 인스턴스 주소
+                // method: "POST",
+                // // headers: { "Content-Type": "application/json" },
+                // data: {
+                //     customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
+                //     user_id: "<%= user.user_id %>"
+                //     }
+                // });
             window.alert('리다이렉트 실행한다아아아아아아아아아아');
             window.location.href = 'http://13.209.206.99:3000/api/test';
-            window.alert('POST메서드를 이용해 /api/billings로 customer_uid 전송함');
-                
             } else {
                 // 빌링키 발급 실패
                 window.alert(JSON.stringify(rsp));
